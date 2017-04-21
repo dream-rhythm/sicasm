@@ -2,13 +2,9 @@
 #define READER
 
 
-#include<fstream>
-#include<iostream>
-#include<string>
+#include"header.hpp"
 #include"ASM_Table.hpp"
-using std::cout;
-using std::string;
-using std::fstream;
+
 
 class Reader{
 private:

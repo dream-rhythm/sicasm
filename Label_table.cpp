@@ -1,5 +1,5 @@
 #include"Label_table.hpp"
-
+#include"header.hpp"
 Label_table::Node::Node(string name,unsigned int address){
     this->address = address;
     this->name = name;

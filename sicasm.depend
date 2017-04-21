@@ -19,60 +19,47 @@
 	<fstream>
 	<iostream>
 
-1492747362 source:f:\╰参祘Α\sicasm\main.cpp
-	<iostream>
-	<fstream>
-	<cstdlib>
-	<cstdio>
-	<cstring>
+1492790208 source:f:\╰参祘Α\sicasm\main.cpp
+	"header.hpp"
 	"Opcode_table.hpp"
 	"reader.hpp"
 	"ASM_Table.hpp"
 	"Label_table.hpp"
 	"LocationCoumter.hpp"
 	"writer.hpp"
+	"ErrMes.hpp"
 
-1492686178 f:\╰参祘Α\sicasm\opcode_table.hpp
-	<string>
-	<cctype>
+1492767028 f:\╰参祘Α\sicasm\opcode_table.hpp
+	"header.hpp"
 
-1492746428 f:\╰参祘Α\sicasm\reader.hpp
-	<fstream>
-	<iostream>
-	<string>
+1492767028 f:\╰参祘Α\sicasm\reader.hpp
+	"header.hpp"
 	"ASM_Table.hpp"
 
-1492686186 source:f:\╰参祘Α\sicasm\opcode_table.cpp
+1492764798 source:f:\╰参祘Α\sicasm\opcode_table.cpp
 	"Opcode_table.hpp"
 
-1492746318 f:\╰参祘Α\sicasm\asm_table.hpp
-	<fstream>
-	<string>
-	<sstream>
-	<cstring>
-	<cstdio>
-	<iostream>
-	<iomanip>
+1492767028 f:\╰参祘Α\sicasm\asm_table.hpp
+	"header.hpp"
 
 1492746340 source:f:\╰参祘Α\sicasm\asm_table.cpp
 	"ASM_Table.hpp"
 
-1492747694 source:f:\╰参祘Α\sicasm\reader.cpp
+1492763522 source:f:\╰参祘Α\sicasm\reader.cpp
 	"reader.hpp"
 
 1492708608 source:f:\╰参祘Α\sicasm\locationcoumter.cpp
 	"LocationCoumter.hpp"
 
-1492620308 f:\╰参祘Α\sicasm\locationcoumter.hpp
-	<string>
-	<cstdlib>
+1492767028 f:\╰参祘Α\sicasm\locationcoumter.hpp
+	"header.hpp"
 
-1492687152 source:f:\╰参祘Α\sicasm\label_table.cpp
+1492767028 source:f:\╰参祘Α\sicasm\label_table.cpp
 	"Label_table.hpp"
+	"header.hpp"
 
-1492686808 f:\╰参祘Α\sicasm\label_table.hpp
-	<string>
-	<iostream>
+1492767028 f:\╰参祘Α\sicasm\label_table.hpp
+	"header.hpp"
 
 1492239652 source:e:\╰参祘Α\sicasm\asm_table.cpp
 	"ASM_Table.hpp"
@@ -121,9 +108,24 @@
 1492744502 source:f:\╰参祘Α\sicasm\writer.cpp
 	"writer.hpp"
 
-1492705650 f:\╰参祘Α\sicasm\writer.hpp
+1492767028 f:\╰参祘Α\sicasm\writer.hpp
 	"ASM_Table.hpp"
+	"header.hpp"
+
+1492790592 f:\╰参祘Α\sicasm\header.hpp
 	<fstream>
-	<iomanip>
 	<string>
+	<sstream>
+	<cstring>
+	<cstdio>
+	<iostream>
+	<iomanip>
+	<cctype>
+	<cstdlib>
+
+1492790356 source:f:\╰参祘Α\sicasm\errmes.cpp
+	"ErrMes.Hpp"
+
+1492769016 f:\╰参祘Α\sicasm\errmes.hpp
+	"header.hpp"
 

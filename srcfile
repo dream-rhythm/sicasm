@@ -15,8 +15,7 @@ go       lda     AA,x
          lda     GG
          div     SIX
          sta     II
-		 rsub
-		 
+		 rsub	 123
 AA       word    2
 aa       word    10
 BB       word    7

@@ -2,9 +2,7 @@
 #define LABEL_TABLE
 
 
-#include <string>
-#include <iostream>
-using std::string;
+#include"header.hpp"
 
 class Label_table{
     public:

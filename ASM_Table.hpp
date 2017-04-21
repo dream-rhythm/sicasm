@@ -1,22 +1,7 @@
 #ifndef ASM_TABLE
 #define ASM_TABLE
 
-#include<fstream>
-#include<string>
-#include<sstream>
-#include<cstring>
-#include<cstdio>
-#include<iostream>
-#include<iomanip>
-using std::fstream;
-using std::stringstream;
-using std::strlen;
-using std::sprintf;
-using std::string;
-using std::cout;
-using std::endl;
-using std::setw;
-using std::getline;
+#include"header.hpp"
 class AsmCode{
 
 public:

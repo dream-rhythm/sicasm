@@ -18,17 +18,17 @@ Line   Loc   obj     Label   OPCode  Data      comment
  15	   2021	 00203f	       	 lda   	 GG    	   
  16	   2024	 24204b	       	 div   	 SIX   	   
  17	   2027	 0c2045	       	 sta   	 II    	   
- 18	   202a	 4c0000	       	 rsub  	       	   
- 19	   202d	       	       	       	       	   
- 20	   202d	 000002	     AA	 word  	 2     	   
- 21	   2030	 00000a	     aa	 word  	 10    	   
- 22	   2033	 000007	     BB	 word  	 7     	   
- 23	   2036	       	     CC	 resw  	 1     	   
- 24	   2039	 ffffff	     EE	 word  	 16777215	   
- 25	   203c	       	     FF	 resw  	 1     	   
- 26	   203f	       	     GG	 resw  	 1     	   
- 27	   2042	       	     HH	 resw  	 1     	   
- 28	   2045	       	     II	 resw  	 1     	   
- 29	   2048	 000003	  THREE	 word  	 3     	   
- 30	   204b	 000006	    SIX	 word  	 6     	   
- 31	   204e	       	       	 end   	 go    	   
+ 18	   202a	 4c0000	       	 rsub  	 123   	   
+Error 23 : RSUB語句資料欄位不該有值
+ 19	   202d	 000002	     AA	 word  	 2     	   
+ 20	   2030	 00000a	     aa	 word  	 10    	   
+ 21	   2033	 000007	     BB	 word  	 7     	   
+ 22	   2036	       	     CC	 resw  	 1     	   
+ 23	   2039	 ffffff	     EE	 word  	 16777215	   
+ 24	   203c	       	     FF	 resw  	 1     	   
+ 25	   203f	       	     GG	 resw  	 1     	   
+ 26	   2042	       	     HH	 resw  	 1     	   
+ 27	   2045	       	     II	 resw  	 1     	   
+ 28	   2048	 000003	  THREE	 word  	 3     	   
+ 29	   204b	 000006	    SIX	 word  	 6     	   
+ 30	   204e	       	       	 end   	 go    	   

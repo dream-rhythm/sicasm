@@ -34,12 +34,15 @@
 		</Compiler>
 		<Unit filename="ASM_Table.cpp" />
 		<Unit filename="ASM_Table.hpp" />
+		<Unit filename="ErrMes.cpp" />
+		<Unit filename="ErrMes.hpp" />
 		<Unit filename="Label_table.cpp" />
 		<Unit filename="Label_table.hpp" />
 		<Unit filename="LocationCoumter.cpp" />
 		<Unit filename="LocationCoumter.hpp" />
 		<Unit filename="Opcode_table.cpp" />
 		<Unit filename="Opcode_table.hpp" />
+		<Unit filename="header.hpp" />
 		<Unit filename="main.cpp" />
 		<Unit filename="reader.cpp" />
 		<Unit filename="reader.hpp" />

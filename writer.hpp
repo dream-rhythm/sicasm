@@ -1,17 +1,7 @@
 #ifndef Writer
 #define Writer
 #include"ASM_Table.hpp"
-#include <fstream>
-#include<iomanip>
-#include<string>
-using std::fstream;
-using std::setw;
-using std::endl;
-using std::setfill;
-using std::dec;
-using std::hex;
-using std::string;
-using std::ios;
+#include"header.hpp"
 class writer{
     public:
         writer(string,string);

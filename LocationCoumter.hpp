@@ -1,11 +1,6 @@
 #ifndef LOCCTR
 #define LOCCTR
-
-
-#include<string>
-#include<cstdlib>
-
-using std::string;
+#include"header.hpp"
 
 class LocationCounter{
     private:
