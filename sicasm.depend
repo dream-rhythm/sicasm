@@ -1,0 +1,129 @@
+# depslib dependency file v1.0
+1489265513 source:d:\cpp\sicasm\sicasm\main.cpp
+	<iostream>
+	<fstream>
+	<cstdlib>
+	<cstdio>
+	<cstring>
+	"Opcode_table.hpp"
+	"reader.hpp"
+
+1489208735 source:d:\cpp\sicasm\sicasm\opcode_table.cpp
+	"Opcode_table.hpp"
+
+1489264105 d:\cpp\sicasm\sicasm\opcode_table.hpp
+	<string>
+	<cctype>
+
+1489265513 d:\cpp\sicasm\sicasm\reader.hpp
+	<fstream>
+	<iostream>
+
+1492747362 source:f:\╰参祘Α\sicasm\main.cpp
+	<iostream>
+	<fstream>
+	<cstdlib>
+	<cstdio>
+	<cstring>
+	"Opcode_table.hpp"
+	"reader.hpp"
+	"ASM_Table.hpp"
+	"Label_table.hpp"
+	"LocationCoumter.hpp"
+	"writer.hpp"
+
+1492686178 f:\╰参祘Α\sicasm\opcode_table.hpp
+	<string>
+	<cctype>
+
+1492746428 f:\╰参祘Α\sicasm\reader.hpp
+	<fstream>
+	<iostream>
+	<string>
+	"ASM_Table.hpp"
+
+1492686186 source:f:\╰参祘Α\sicasm\opcode_table.cpp
+	"Opcode_table.hpp"
+
+1492746318 f:\╰参祘Α\sicasm\asm_table.hpp
+	<fstream>
+	<string>
+	<sstream>
+	<cstring>
+	<cstdio>
+	<iostream>
+	<iomanip>
+
+1492746340 source:f:\╰参祘Α\sicasm\asm_table.cpp
+	"ASM_Table.hpp"
+
+1492747694 source:f:\╰参祘Α\sicasm\reader.cpp
+	"reader.hpp"
+
+1492708608 source:f:\╰参祘Α\sicasm\locationcoumter.cpp
+	"LocationCoumter.hpp"
+
+1492620308 f:\╰参祘Α\sicasm\locationcoumter.hpp
+	<string>
+	<cstdlib>
+
+1492687152 source:f:\╰参祘Α\sicasm\label_table.cpp
+	"Label_table.hpp"
+
+1492686808 f:\╰参祘Α\sicasm\label_table.hpp
+	<string>
+	<iostream>
+
+1492239652 source:e:\╰参祘Α\sicasm\asm_table.cpp
+	"ASM_Table.hpp"
+
+1492501920 e:\╰参祘Α\sicasm\asm_table.hpp
+	<string>
+
+1492245398 source:e:\╰参祘Α\sicasm\label_table.cpp
+	"Label_table.hpp"
+
+1492244958 e:\╰参祘Α\sicasm\label_table.hpp
+	<string>
+
+1492242980 source:e:\╰参祘Α\sicasm\locationcoumter.cpp
+	"LocationCoumter.hpp"
+
+1492242044 e:\╰参祘Α\sicasm\locationcoumter.hpp
+	<string>
+	<cstdlib>
+
+1492504134 source:e:\╰参祘Α\sicasm\main.cpp
+	<iostream>
+	<fstream>
+	<cstdlib>
+	<cstdio>
+	<cstring>
+	"Opcode_table.hpp"
+	"reader.hpp"
+	"ASM_Table.hpp"
+	"Label_table.hpp"
+	"LocationCoumter.hpp"
+
+1492244458 e:\╰参祘Α\sicasm\opcode_table.hpp
+	<string>
+	<cctype>
+
+1492505790 e:\╰参祘Α\sicasm\reader.hpp
+	<fstream>
+	<iostream>
+	<string>
+	"ASM_Table.hpp"
+
+1492449572 source:e:\╰参祘Α\sicasm\opcode_table.cpp
+	"Opcode_table.hpp"
+
+1492744502 source:f:\╰参祘Α\sicasm\writer.cpp
+	"writer.hpp"
+
+1492705650 f:\╰参祘Α\sicasm\writer.hpp
+	"ASM_Table.hpp"
+	<fstream>
+	<iomanip>
+	<string>
+
