@@ -213,7 +213,7 @@
 	<cctype>
 	<cstdlib>
 
-1492877862 source:c:\users\«a¿Ä\desktop\sicasm\errmes.cpp
+1492879872 source:c:\users\«a¿Ä\desktop\sicasm\errmes.cpp
 	"ErrMes.Hpp"
 
 1492866807 c:\users\«a¿Ä\desktop\sicasm\errmes.hpp
@@ -252,7 +252,7 @@
 	"header.hpp"
 	"ASM_Table.hpp"
 
-1492878860 source:c:\users\«a¿Ä\desktop\sicasm\main.cpp
+1492880115 source:c:\users\«a¿Ä\desktop\sicasm\main.cpp
 	"header.hpp"
 	"Opcode_table.hpp"
 	"reader.hpp"

@@ -60,9 +60,23 @@ int main(int arg_num,char* arg_data[]){
                 else tmpCode->add_ErrMes(ErrMes::get_ErrorMessage(63,Setting.language));
             }
             else{
-
-                if(SymbolTAB->is_in(tmpCode->get_data()))LocCtr->set_org(SymbolTAB->get_address(tmpCode->get_data()));
-                else tmpCode->add_ErrMes(ErrMes::get_ErrorMessage(36,Setting.language));
+                tmpStringData = tmpCode->get_data();
+                unsigned int loc=0;
+                if(tmpStringData.find("+")){
+                    if(SymbolTAB->is_in(tmpCode->get_data().substr(0,tmpStringData.find("+"))))loc = SymbolTAB->get_address(tmpCode->get_data().substr(0,tmpStringData.find("+")));
+                    else tmpCode->add_ErrMes(ErrMes::get_ErrorMessage(36,Setting.language));
+                    loc+=atoi(tmpCode->get_data().substr(tmpStringData.find("+")).c_str());
+                }
+                else if(tmpStringData.find("-")){
+                    if(SymbolTAB->is_in(tmpCode->get_data().substr(0,tmpStringData.find("-"))))loc = SymbolTAB->get_address(tmpCode->get_data().substr(0,tmpStringData.find("+")));
+                    else tmpCode->add_ErrMes(ErrMes::get_ErrorMessage(36,Setting.language));
+                    loc+=atoi(tmpCode->get_data().substr(tmpStringData.find("-")).c_str());
+                }
+                else{
+                    if(SymbolTAB->is_in(tmpCode->get_data()))loc = SymbolTAB->get_address(tmpCode->get_data());
+                    else tmpCode->add_ErrMes(ErrMes::get_ErrorMessage(36,Setting.language));
+                }
+                LocCtr->set_org(loc);
             }
         }
         else{

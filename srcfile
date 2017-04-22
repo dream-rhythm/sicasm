@@ -2,7 +2,7 @@ HW1SIC   start   2000		123
 .this is a test
  .this is a test
 test     resw    100
-         org     test
+         org     test+10
 first    word    1
 second   word    2
          org
