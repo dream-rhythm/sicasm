@@ -13,22 +13,22 @@ Line   Loc   obj     Label   OPCode  Data      comment
  10	   2012	 0c203c	       	 sta   	 FF    	   
  11	   2015	 002039	       	 lda   	 EE    	   
  12	   2018	 24202d	       	 div   	 AA    	   
- 13	   201b	 202048	       	 mul   	 THREE 	   
- 14	   201e	 0c2042	       	 sta   	 HH    	   
- 15	   2021	 00203f	       	 lda   	 GG    	   
- 16	   2024	 24204b	       	 div   	 SIX   	   
- 17	   2027	 0c2045	       	 sta   	 II    	   
+ 13	   201b	 202049	       	 mul   	 THREE 	   
+ 14	   201e	 0c2043	       	 sta   	 HH    	   
+ 15	   2021	 002040	       	 lda   	 GG    	   
+ 16	   2024	 24204c	       	 div   	 SIX   	   
+ 17	   2027	 0c2046	       	 sta   	 II    	   
  18	   202a	 4c0000	       	 rsub  	 123   	   
-Error 23 : RSUBªy•y∏ÍÆ∆ƒÊ¶Ï§£∏”¶≥≠»
+Error 23 : RSUBË™ûÂè•Ë≥áÊñôÊ¨Ñ‰Ωç‰∏çË©≤ÊúâÂÄº
  19	   202d	 000002	     AA	 word  	 2     	   
  20	   2030	 00000a	     aa	 word  	 10    	   
  21	   2033	 000007	     BB	 word  	 7     	   
  22	   2036	       	     CC	 resw  	 1     	   
  23	   2039	 ffffff	     EE	 word  	 16777215	   
- 24	   203c	       	     FF	 resw  	 1     	   
- 25	   203f	       	     GG	 resw  	 1     	   
- 26	   2042	       	     HH	 resw  	 1     	   
- 27	   2045	       	     II	 resw  	 1     	   
- 28	   2048	 000003	  THREE	 word  	 3     	   
- 29	   204b	 000006	    SIX	 word  	 6     	   
- 30	   204e	       	       	 end   	 go    	   
+ 24	   203c	 20272720	     FF	 BYTE  	 C' '' '	   this is comment
+ 25	   2040	       	     GG	 resw  	 1     	   
+ 26	   2043	       	     HH	 resw  	 1     	   
+ 27	   2046	       	     II	 resw  	 1     	   
+ 28	   2049	 000003	  THREE	 word  	 3     	   
+ 29	   204c	 000006	    SIX	 word  	 6     	   
+ 30	   204f	       	       	 end   	 go    	   

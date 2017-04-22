@@ -21,7 +21,7 @@ aa       word    10
 BB       word    7
 CC       resw    1
 EE       word    16777215
-FF       resw    1
+FF       BYTE    C'	'' ' this is comment
 GG       resw    1
 HH       resw    1
 II       resw    1

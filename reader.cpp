@@ -86,6 +86,15 @@ bool Reader::nextLine(){
                 else if(SpaceCounter==2){                           //如果SpaceCounter是data
                     this->data+=old.at(i);                              //存入data
                     SpaceFlag=false;                                    //空白旗標設成false
+                    if((this->data.at(0)=='C'||this->data.at(0)=='c')&&this->action=="BYTE"){
+                        string tmp;
+                        tmp=old.substr(i,i+19);
+                        int place = tmp.rfind("\' ");
+                        tmp = tmp.substr(0,place+1);
+                        this->data=tmp;
+                        i+=tmp.length()-1;
+                        SpaceCounter = 3;
+                    }
                 }
                 else{                                               //如果SpaceCounter是comment
                     this->comment+=old.at(i);                           //存入comment
@@ -99,6 +108,7 @@ bool Reader::nextLine(){
         else if(this->action=="WORD"||this->action=="BYTE")this->type=3;//設定type
         else if(this->action=="")this->type=5;                          //設定type
         else this->type = 4;                                            //設定type
+
 
         return true;                                                 //回傳true代表成功讀取資料
     }

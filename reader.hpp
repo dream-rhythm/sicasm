@@ -22,6 +22,7 @@ private:
     string replaceTab(string);
     string toUpper(string);
     string removeHeaderSpace(string);
+
 public:
     Reader(string,AsmTable*);
     ~Reader();
