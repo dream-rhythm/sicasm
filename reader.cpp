@@ -106,6 +106,7 @@ bool Reader::nextLine(){
         else if(this->action=="END")type = 1;                           //設定type
         else if(this->action=="RESW"||this->action=="RESB")this->type=2;//設定type
         else if(this->action=="WORD"||this->action=="BYTE")this->type=3;//設定type
+        else if(this->action=="ORG")this->type=6;
         else if(this->action=="")this->type=5;                          //設定type
         else this->type = 4;                                            //設定type
 

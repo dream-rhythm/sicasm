@@ -1,6 +1,11 @@
 HW1SIC   start   2000		123
 .this is a test
  .this is a test
+test     resw    100
+         org     test
+first    word    1
+second   word    2
+         org
 go       lda     AA,x
          add     BB
          sta     CC
@@ -15,13 +20,13 @@ go       lda     AA,x
          lda     GG
          div     SIX
          sta     II
-		 rsub	 123
+		 rsub	
 AA       word    2
 aa       word    10
 BB       word    7
 CC       resw    1
 EE       word    16777215
-FF       BYTE    C'	'' ' this is comment
+FF       BYTE    C'123' this is comment
 GG       resw    1
 HH       resw    1
 II       resw    1

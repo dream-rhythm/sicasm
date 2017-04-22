@@ -53,6 +53,18 @@ int main(int arg_num,char* arg_data[]){
         }
         //Comment
         else if(tmpCode->get_type()==5);
+        else if(tmpCode->get_type()==6){
+            if(tmpCode->get_data()==""){
+                cout<<"\""<<tmpCode->get_data()<<"\""<<endl;
+                if(LocCtr->set_org());
+                else tmpCode->add_ErrMes(ErrMes::get_ErrorMessage(63,Setting.language));
+            }
+            else{
+
+                if(SymbolTAB->is_in(tmpCode->get_data()))LocCtr->set_org(SymbolTAB->get_address(tmpCode->get_data()));
+                else tmpCode->add_ErrMes(ErrMes::get_ErrorMessage(36,Setting.language));
+            }
+        }
         else{
             if(tmpCode->get_label()!=""){
                 tmpStringData = tmpCode->get_label();
@@ -180,6 +192,10 @@ int main(int arg_num,char* arg_data[]){
         else if(tmpCode->get_type()==2)fout->writeTCard();    //RESW RESB
         else if(tmpCode->get_type()==3)fout->outputTCard(tmpCode->get_Address(),tmpCode->get_objcode());    //WORD BYTE
         else if(tmpCode->get_type()==4)fout->outputTCard(tmpCode->get_Address(),tmpCode->get_objcode());    //opcode
+        else if(tmpCode->get_type()==6){
+            fout->writeTCard();
+            //fout->outputTCard(tmpCode->get_Address(),tmpCode->get_objcode());
+        }
     }
     delete fout;
     delete AsmTAB;

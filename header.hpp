@@ -1,6 +1,7 @@
 #ifndef HEADER
 #define HEADER
 
+#include<stack>
 #include<fstream>
 #include<string>
 #include<sstream>

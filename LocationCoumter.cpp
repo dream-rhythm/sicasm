@@ -46,3 +46,18 @@ unsigned int  LocationCounter::get_nowLoc(){
 bool LocationCounter::is_Start(){
     return this->isStart;
 }
+bool LocationCounter::set_org(unsigned int address){
+    this->OrgStack.push(this->get_nowLoc());
+    this->location = address;
+    return true;
+}
+bool LocationCounter::set_org(){
+    if(this->OrgStack.empty()){
+        return false;
+    }
+    else{
+        this->location = this->OrgStack.top();
+        this->OrgStack.pop();
+        return true;
+    }
+}
