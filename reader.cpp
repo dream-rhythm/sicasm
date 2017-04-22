@@ -10,10 +10,10 @@ void Reader::clear_status(){
     comment.clear();
 };
 
-Reader::Reader(string FileName,AsmTable*Asm){
+Reader::Reader(string FileName,int TabSpace){
     this->file.open(FileName,std::ios::in);
-    this->AsmTAB = Asm;
     this->lines=0;
+    this->TabSpace = TabSpace;
 }
 Reader::~Reader(){
     this->file.close();
@@ -29,9 +29,9 @@ string Reader::replaceTab(string from){
     int txtLong=0;
     for(unsigned int i=0;i<from.length();i++){
         if(from.at(i)=='\t'){
-            for(int j=0;j<4-(txtLong%4);j++)ans.append(" ");
+            for(int j=0;j< this->TabSpace-(txtLong% this->TabSpace ) ;j++)ans.append(" ");
 
-            txtLong+=4-(txtLong%4);
+            txtLong+= this->TabSpace - (txtLong % this->TabSpace);
         }
         else{
             tmp=from.at(i);

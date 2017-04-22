@@ -195,3 +195,73 @@
 1492869029 source:c:\users\«a¿Ä\desktop\sicasm-master\reader.cpp
 	"reader.hpp"
 
+1492866807 source:c:\users\«a¿Ä\desktop\sicasm\asm_table.cpp
+	"ASM_Table.hpp"
+
+1492866807 c:\users\«a¿Ä\desktop\sicasm\asm_table.hpp
+	"header.hpp"
+
+1492866807 c:\users\«a¿Ä\desktop\sicasm\header.hpp
+	<fstream>
+	<string>
+	<sstream>
+	<cstring>
+	<cstdio>
+	<iostream>
+	<iomanip>
+	<cctype>
+	<cstdlib>
+
+1492866807 source:c:\users\«a¿Ä\desktop\sicasm\errmes.cpp
+	"ErrMes.Hpp"
+
+1492866807 c:\users\«a¿Ä\desktop\sicasm\errmes.hpp
+	"header.hpp"
+
+1492866807 source:c:\users\«a¿Ä\desktop\sicasm\label_table.cpp
+	"Label_table.hpp"
+	"header.hpp"
+
+1492866807 c:\users\«a¿Ä\desktop\sicasm\label_table.hpp
+	"header.hpp"
+
+1492866807 source:c:\users\«a¿Ä\desktop\sicasm\locationcoumter.cpp
+	"LocationCoumter.hpp"
+
+1492866807 c:\users\«a¿Ä\desktop\sicasm\locationcoumter.hpp
+	"header.hpp"
+
+1492866807 source:c:\users\«a¿Ä\desktop\sicasm\opcode_table.cpp
+	"Opcode_table.hpp"
+
+1492866807 c:\users\«a¿Ä\desktop\sicasm\opcode_table.hpp
+	"header.hpp"
+
+1492866807 source:c:\users\«a¿Ä\desktop\sicasm\writer.cpp
+	"writer.hpp"
+
+1492866807 c:\users\«a¿Ä\desktop\sicasm\writer.hpp
+	"ASM_Table.hpp"
+	"header.hpp"
+
+1492874169 source:c:\users\«a¿Ä\desktop\sicasm\reader.cpp
+	"reader.hpp"
+
+1492874096 c:\users\«a¿Ä\desktop\sicasm\reader.hpp
+	"header.hpp"
+	"ASM_Table.hpp"
+
+1492873933 source:c:\users\«a¿Ä\desktop\sicasm\main.cpp
+	"header.hpp"
+	"Opcode_table.hpp"
+	"reader.hpp"
+	"ASM_Table.hpp"
+	"Label_table.hpp"
+	"LocationCoumter.hpp"
+	"writer.hpp"
+	"ErrMes.hpp"
+	"AsmSetting.hpp"
+
+1492872521 c:\users\«a¿Ä\desktop\sicasm\asmsetting.hpp
+	"header.hpp"
+

@@ -3,26 +3,26 @@ Line   Loc   obj     Label   OPCode  Data      comment
 ====   ====  ======  ======  ======  ========  ==========================
   1	   2000	       	 HW1SIC	 start 	 2000  	   
   2	   2000	 000000	     go	 lda   	 #2    	   
-Error 54 : è³‡æ–™æ¬„ä½å«æœ‰æœªå®šç¾©çš„æ¨™ç±¤
+Error 54 : ¸ê®ÆÄæ¦ì§t¦³¥¼©w¸qªº¼ÐÅÒ
   3	   2003	 180000	       	 add   	 #7    	   
-Error 54 : è³‡æ–™æ¬„ä½å«æœ‰æœªå®šç¾©çš„æ¨™ç±¤
+Error 54 : ¸ê®ÆÄæ¦ì§t¦³¥¼©w¸qªº¼ÐÅÒ
   4	   2006	 0c202d	       	 sta   	 CC    	   
   5	   2009	 1c0000	       	 sub   	 #3    	   
-Error 54 : è³‡æ–™æ¬„ä½å«æœ‰æœªå®šç¾©çš„æ¨™ç±¤
+Error 54 : ¸ê®ÆÄæ¦ì§t¦³¥¼©w¸qªº¼ÐÅÒ
   6	   200c	 0c2030	       	 sta   	 EE    	   
   7	   200f	 200000	       	 mul   	 #2    	   
-Error 54 : è³‡æ–™æ¬„ä½å«æœ‰æœªå®šç¾©çš„æ¨™ç±¤
+Error 54 : ¸ê®ÆÄæ¦ì§t¦³¥¼©w¸qªº¼ÐÅÒ
   8	   2012	 0c2033	       	 sta   	 FF    	   
   9	   2015	 002030	       	 lda   	 EE    	   
  10	   2018	 240000	       	 div   	 #2    	   
-Error 54 : è³‡æ–™æ¬„ä½å«æœ‰æœªå®šç¾©çš„æ¨™ç±¤
+Error 54 : ¸ê®ÆÄæ¦ì§t¦³¥¼©w¸qªº¼ÐÅÒ
  11	   201b	 0c2036	       	 sta   	 GG    	   
  12	   201e	 200000	       	 mul   	 #3    	   
-Error 54 : è³‡æ–™æ¬„ä½å«æœ‰æœªå®šç¾©çš„æ¨™ç±¤
+Error 54 : ¸ê®ÆÄæ¦ì§t¦³¥¼©w¸qªº¼ÐÅÒ
  13	   2021	 0c2039	       	 sta   	 HH    	   
  14	   2024	 002036	       	 lda   	 GG    	   
  15	   2027	 240000	       	 div   	 #6    	   
-Error 54 : è³‡æ–™æ¬„ä½å«æœ‰æœªå®šç¾©çš„æ¨™ç±¤
+Error 54 : ¸ê®ÆÄæ¦ì§t¦³¥¼©w¸qªº¼ÐÅÒ
  16	   202a	 0c203c	       	 sta   	 II    	   
  17	   202d	       	     CC	 resw  	 1     	   
  18	   2030	       	     EE	 resw  	 1     	   

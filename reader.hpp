@@ -8,6 +8,7 @@
 
 class Reader{
 private:
+    int TabSpace;
     int lines;
     string cmd;
     string label;
@@ -17,14 +18,13 @@ private:
     string comment;
     int type;
     fstream file;
-    AsmTable*AsmTAB;
     void clear_status();
     string replaceTab(string);
     string toUpper(string);
     string removeHeaderSpace(string);
 
 public:
-    Reader(string,AsmTable*);
+    Reader(string,int);
     ~Reader();
     bool nextLine();
     AsmCode* get_AsmCode();
