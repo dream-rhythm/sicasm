@@ -15,6 +15,7 @@ int main(int arg_num,char* arg_data[]){
     string tmpStringData;
     unsigned int tmpData;
     bool stopObjFileOutput;
+    bool is_end_statament=false;
     LocationCounter*LocCtr= new LocationCounter();
     Label_table*SymbolTAB = new Label_table();
     AsmTable* AsmTAB;
@@ -76,11 +77,13 @@ int main(int arg_num,char* arg_data[]){
     //Pass2
     for(int i=1;i<=AsmTAB->get_lines();i++){
         tmpCode = AsmTAB->findLine(i);
+        if(is_end_statament&&tmpCode->get_type()!=5)tmpCode->add_ErrMes(ErrMes::get_ErrorMessage(6,Setting.language));
         if(tmpCode->get_type()==0);         //START
         else if(tmpCode->get_type()==1){    //END
             if(tmpCode->get_data()=="");
             else if(SymbolTAB->is_in(tmpCode->get_data()));
             else tmpCode->add_ErrMes(ErrMes::get_ErrorMessage(2,Setting.language));
+            is_end_statament =true;
         }
         else if(tmpCode->get_type()==2);    //RESW RESB
         else if(tmpCode->get_type()==3){    //WORD BYTE
