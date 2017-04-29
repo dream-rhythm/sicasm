@@ -1,5 +1,5 @@
 #include"ASM_Table.hpp"
-AsmCode::AsmCode(int type,string label,string opcode,string data,string commit,int line,string opcode_old){
+AsmCode::AsmCode(TYPE type,string label,string opcode,string data,string commit,int line,string opcode_old){
     this->type=type;
     this->lable=label;
     this->opcode=opcode;
@@ -13,6 +13,12 @@ AsmCode::AsmCode(int type,string label,string opcode,string data,string commit,i
 };
 AsmCode::~AsmCode(){
     if(this->head!=nullptr)delete this->head;
+}
+void AsmCode::add_ErrMes(int errorCode,string language){
+    string str = ErrMes::get_ErrorMessage(errorCode,language);
+    AsmCode::ErrMessage* errCode = new AsmCode::ErrMessage(str);
+    errCode->set_next(this->head);
+    this->head = errCode;
 }
 void AsmCode::add_ErrMes(string str){
     AsmCode::ErrMessage* errCode = new AsmCode::ErrMessage(str);
@@ -55,7 +61,7 @@ void AsmCode::ErrMessage::printErrMes(fstream&fout){
 void AsmCode::set_next(AsmCode*ptr){
     this->next = ptr;
 }
-int AsmCode::get_type(){
+TYPE AsmCode::get_type(){
     return this->type;
 }
 string AsmCode::get_data(){

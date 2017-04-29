@@ -1,6 +1,6 @@
 #ifndef ASM_TABLE
 #define ASM_TABLE
-
+#include"ERRMES.HPP"
 #include"header.hpp"
 class AsmCode{
 
@@ -16,14 +16,15 @@ public:
             ErrMessage(string);
             ~ErrMessage();
     };
-    AsmCode(int,string,string,string,string,int,string);
+    AsmCode(TYPE,string,string,string,string,int,string);
     //AsmCode(int,string,string,string,string,int);
     void set_Address(unsigned int);
+    void add_ErrMes(int,string);
     void add_ErrMes(string);
     void set_next(AsmCode*);
     void set_objcode(string);
     void set_objcode(unsigned int);
-    int get_type();
+    TYPE get_type();
     unsigned int get_Address();
     string get_label();
     string get_opcode();
@@ -35,16 +36,16 @@ public:
     void printErrMes(fstream&);
     void printData();
 private:
-    int type;
-    string lable;
-    string opcode;      //upper
-    string opcode_old;
-    string data;
-    string commit;
-    int line;
-    unsigned int address;
-    string objcode;
-    ErrMessage*head;
+    TYPE type;              //類型
+    string lable;           //標籤
+    string opcode;          //指令-upper
+    string opcode_old;      //指令-原始
+    string data;            //資料
+    string commit;          //註解
+    int line;               //行數
+    unsigned int address;   //位址
+    string objcode;         //objcode
+    ErrMessage*head;        //錯誤訊息的鏈結串列
 };
 
 class AsmTable{
