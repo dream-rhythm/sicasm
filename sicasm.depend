@@ -114,7 +114,7 @@
 	"ASM_Table.hpp"
 	"header.hpp"
 
-1493461284 f:\╰参祘Α\sicasm\header.hpp
+1493465570 f:\╰参祘Α\sicasm\header.hpp
 	<stack>
 	<fstream>
 	<string>
@@ -126,7 +126,7 @@
 	<cctype>
 	<cstdlib>
 
-1492960466 source:f:\╰参祘Α\sicasm\errmes.cpp
+1493465064 source:f:\╰参祘Α\sicasm\errmes.cpp
 	"ErrMes.Hpp"
 
 1492769016 f:\╰参祘Α\sicasm\errmes.hpp
