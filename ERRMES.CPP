@@ -30,7 +30,7 @@ ErrMes::MESSAGE ErrMes::MesTable[]={
     {25,"Missing operand in BASE statement","BASE語句中缺少資料欄位"},
     {26,"Duplicate label definition","標籤重複定義"},
     {36,"Symbol must be defined before used in ORG statement","ORG語句所使用的標籤應在之前就被定義"},
-    {64,"ORG statement must be used before jump back","在使用ORG語句跳回原程式前,ORG語句應先被呼叫過"},
+    {63,"ORG statement must be used before jump back","在使用ORG語句跳回原程式前,ORG語句應先被呼叫過"},
     {65,"Illegal format in operand field","資料欄位格式不符合規定"}
 };
 
