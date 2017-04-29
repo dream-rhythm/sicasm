@@ -11,15 +11,16 @@ class writer{
         void outputECard(unsigned int);
         void outputTCard(unsigned int,string);
         void writeTCard();
-        void initList();
+        void stopOutputObjFILE(bool);
     private:
+        void initList();
         fstream ListFile;
         fstream ObjFile;
         char CardType;
         unsigned int startLoc;
         int ByteCounter;
         string CardContentBuff;
-
+        bool stopOBJFILE;
 };
 
 #endif // Writer

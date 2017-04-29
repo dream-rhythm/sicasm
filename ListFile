@@ -9,7 +9,7 @@ Line   Loc   obj     Label   OPCode  Data      comment
   6	   200a	 000001	  first	 word  	 1     	   
   7	   200d	 000002	 second	 word  	 2     	   
   8	   2010	       	       	 org   	       	   
-  9	   212c	 002159	     go	 lda   	 AA,x  	   
+  9	   212c	 00a159	     go	 lda   	 AA,x  	   
  10	   212f	 18215f	       	 add   	 BB    	   
  11	   2132	 0c2162	       	 sta   	 CC    	   
  12	   2135	 1c2162	       	 sub   	 CC    	   

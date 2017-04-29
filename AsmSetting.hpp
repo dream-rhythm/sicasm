@@ -11,4 +11,11 @@ class AsmSetting{
         string language;
         int TabSpace;
 };
+class ProgramInfo{
+    public:
+    string Name;
+    unsigned start;
+    unsigned end;
+    unsigned main;
+};
 #endif // ASMSETTING

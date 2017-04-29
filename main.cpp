@@ -11,10 +11,10 @@ int setFileName(int,char*[],AsmSetting&);
 
 int main(int arg_num,char* arg_data[]){
     AsmSetting Setting;
+    ProgramInfo Info;
     stringstream ss;
     string tmpStr;
     unsigned int tmpData;
-    bool stopObjFileOutput;
     bool is_end_statament=false;
     LocationCounter*LocCtr= new LocationCounter();
     Label_table*SymbolTAB = new Label_table();
@@ -48,12 +48,16 @@ int main(int arg_num,char* arg_data[]){
             if(code==-1)tmpCode->add_ErrMes(19,Setting.language);                       //設定失敗(重複設定)   噴錯誤19(Duplicate START statement)
             else if(code==1)tmpCode->add_ErrMes(5,Setting.language);                    //設定失敗(16進制錯誤) 噴錯誤5(Illegal hex string in START statement)
             else if(code==2)tmpCode->add_ErrMes(4,Setting.language);                    //設定失敗(欄位為空)   噴錯誤4(Missing operand in START statement)
-            else tmpCode->set_Address(LocCtr->get_nowLoc());                            //設定成功             重設該句Loction為指定的值
+            else {
+                tmpCode->set_Address(LocCtr->get_nowLoc());                             //設定成功   重設該句Loction為指定的值
+                Info.start=LocCtr->get_nowLoc();                                        //設定成功   設定程式起始點
+            }
             if(tmpCode->get_label()=="")tmpCode->add_ErrMes(3,Setting.language);    //如果程式名稱欄位為空     噴錯誤3(Missing label in START statement)
+            else Info.Name=tmpCode->get_label();                                    //設定程式名稱
         }
         //Comment
         else if(tmpCode->get_type()==COMMENT);                                      //如果是註解  啥都不做
-        else if(tmpCode->get_type()==END);                                          //如果是END  啥都不做
+        else if(tmpCode->get_type()==END)Info.end=LocCtr->get_nowLoc();             //設定程式結尾
         else if(tmpCode->get_type()==ORG){                                          //如果是ORG指令
             if(tmpCode->get_data()==""){                                            //如果未指定ORG的位址
                 if(LocCtr->set_org());                                                  //跳回原本的地方
@@ -110,9 +114,12 @@ int main(int arg_num,char* arg_data[]){
         if(is_end_statament&&tmpCode->get_type()!=COMMENT)tmpCode->add_ErrMes(6,Setting.language);//如果讀到END語句 後面還有非註解的東西 噴錯誤6(Undefined label after END statement)
         if(tmpCode->get_type()==START);                                            //如果是START語句   啥都不做
         else if(tmpCode->get_type()==END){                                         //如果是END語句
-            if(tmpCode->get_data()=="");                                                //如果沒有指定位址     啥都不做
-            else if(SymbolTAB->is_in(tmpCode->get_data()));                             //如果找的到指定的位址 也是啥都不做
-            else tmpCode->add_ErrMes(2,Setting.language);                               //如果找不到      噴錯誤2(Illegal format in operation field)
+            if(tmpCode->get_data()=="")Info.main=Info.start;                            //如果沒設定起始點  設起始點為程式第一行
+            else if(SymbolTAB->is_in(tmpCode->get_data()))Info.main=SymbolTAB->get_address(tmpCode->get_data());//找的到label 設該label為程式起點                             //如果找的到指定的位址 也是啥都不做
+            else {                                                                      //如果找不到
+                Info.main=Info.start;                                                        //設起始點為程式第一行
+                tmpCode->add_ErrMes(2,Setting.language);                                     // 噴錯誤2(Illegal format in operation field)
+            }
             is_end_statament =true;                                                     //把end旗標設成true
         }
         else if(tmpCode->get_type()==RES);                                          //RESW RESB    啥都不做
@@ -181,35 +188,26 @@ int main(int arg_num,char* arg_data[]){
     }
 
     //Pass3
-    fout = new writer(Setting.listFileName,Setting.objFileName);
-    stopObjFileOutput=false;
-    fout->initList();
-    for(int i=1;i<=AsmTAB->get_lines();i++){
-        tmpCode = AsmTAB->findLine(i);
-        fout->outputList(tmpCode);
-        if(tmpCode->has_ErrMes())stopObjFileOutput=true;
-        if(stopObjFileOutput)continue;
-        if(tmpCode->get_type()==0)fout->outputHCard(tmpCode->get_label(),tmpCode->get_Address(),LocCtr->get_nowLoc());//START
-        else if(tmpCode->get_type()==1){
-            if(tmpCode->get_data()=="")fout->outputECard(AsmTAB->findLine(1)->get_Address());
-            else if(SymbolTAB->is_in(tmpCode->get_data()))fout->outputECard(SymbolTAB->get_address(tmpCode->get_data()));    //END
-            else fout->outputECard(AsmTAB->findLine(1)->get_Address());
-        }
-
-        else if(tmpCode->get_type()==2)fout->writeTCard();    //RESW RESB
-        else if(tmpCode->get_type()==3)fout->outputTCard(tmpCode->get_Address(),tmpCode->get_objcode());    //WORD BYTE
-        else if(tmpCode->get_type()==4)fout->outputTCard(tmpCode->get_Address(),tmpCode->get_objcode());    //opcode
-        else if(tmpCode->get_type()==6){
-            fout->writeTCard();
-        }
+    fout = new writer(Setting.listFileName,Setting.objFileName);                            //建立新的輸出物件
+    for(int i=1;i<=AsmTAB->get_lines();i++){                                                //從第一句開始
+        tmpCode = AsmTAB->findLine(i);                                                      //一句一句
+        fout->outputList(tmpCode);                                                              //輸出到listFile
+        if(tmpCode->has_ErrMes())fout->stopOutputObjFILE(true);                                 //如果有錯 終止以後的objfile輸出
+        if(tmpCode->get_type()==START)fout->outputHCard(Info.Name,Info.start,Info.end);         //START語句  輸出H卡片
+        else if(tmpCode->get_type()==END)fout->outputECard(Info.end);                           //END語句    輸出E卡片
+        else if(tmpCode->get_type()==RES)fout->writeTCard();                                    //RESW RESB  輸出T卡片
+        else if(tmpCode->get_type()==CONST)fout->outputTCard(tmpCode->get_Address(),tmpCode->get_objcode());    //WORD BYTE   輸出T卡片暫存
+        else if(tmpCode->get_type()==OPERATOR)fout->outputTCard(tmpCode->get_Address(),tmpCode->get_objcode()); //opcode      輸出T卡片暫存
+        else if(tmpCode->get_type()==ORG)fout->writeTCard();                                    //ORG語句    輸出T卡片
     }
+
+
     delete fout;
     delete AsmTAB;
     delete SymbolTAB;
     delete LocCtr;
     delete fin;
     return 0;
-
 }
 
 int setFileName(int arg_num,char* arg_data[],AsmSetting&Setting){
