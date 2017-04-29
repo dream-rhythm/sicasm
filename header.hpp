@@ -2,6 +2,7 @@
 #define HEADER
 
 #include<stack>
+#include<map>
 #include<fstream>
 #include<string>
 #include<sstream>

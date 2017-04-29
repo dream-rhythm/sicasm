@@ -1,5 +1,7 @@
 #include"ErrMes.Hpp"
 
+/*
+舊版使用array實作
 ErrMes::MESSAGE ErrMes::MesTable[]={
     {64,"Out of addressing range","超出定址範圍"},
     {54,"Undefined symbol in operand field","資料欄位含有未定義的標籤"},
@@ -34,6 +36,7 @@ ErrMes::MESSAGE ErrMes::MesTable[]={
     {65,"Illegal format in operand field","資料欄位格式不符合規定"}
 };
 
+
 string ErrMes::get_ErrorMessage(int ErrorCode,string language){
     stringstream ss;
     string out;
@@ -42,6 +45,27 @@ string ErrMes::get_ErrorMessage(int ErrorCode,string language){
     for(i=0;i<28;i++)if(MesTable[i].ErrorCode==ErrorCode)break;
     if(language=="zh")ss<<"Error "<<setw(2)<<ErrorCode<<" : "<<MesTable[i].zh;
     else ss<<"Error "<<setw(2)<<ErrorCode<<" : "<<MesTable[i].eng;
+    getline(ss,out);
+    return out;
+}
+*/
+
+//新版採用hashTable實作
+map<int,ErrMes::MESSAGE> ErrMes::MesTable=ErrMes::initTable();
+
+map<int,ErrMes::MESSAGE> ErrMes::initTable(){
+    map<int,MESSAGE> tmp;
+    tmp[1]={"Illegal format in label field","label欄位格式不符合規定"};
+    tmp[2]={"Illegal format in operation field","指令欄位格式不符合規定"};
+    return tmp;
+}
+
+string ErrMes::get_ErrorMessage(int ErrorCode,string language){
+    stringstream ss;
+    string out;
+    ss<<"Error "<<setw(2)<<ErrorCode<<" : ";
+    if(language=="zh")ss<<MesTable.find(ErrorCode)->second.zh;
+    else ss<<MesTable.find(ErrorCode)->second.eng;
     getline(ss,out);
     return out;
 }

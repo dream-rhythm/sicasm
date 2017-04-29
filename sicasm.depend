@@ -19,7 +19,7 @@
 	<fstream>
 	<iostream>
 
-1493461050 source:f:\╰参祘Α\sicasm\main.cpp
+1493467752 source:f:\╰参祘Α\sicasm\main.cpp
 	"header.hpp"
 	"Opcode_table.hpp"
 	"reader.hpp"
@@ -47,7 +47,7 @@
 1493461340 source:f:\╰参祘Α\sicasm\asm_table.cpp
 	"ASM_Table.hpp"
 
-1493312392 source:f:\╰参祘Α\sicasm\reader.cpp
+1493461542 source:f:\╰参祘Α\sicasm\reader.cpp
 	"reader.hpp"
 
 1492960466 source:f:\╰参祘Α\sicasm\locationcoumter.cpp
@@ -114,8 +114,9 @@
 	"ASM_Table.hpp"
 	"header.hpp"
 
-1493465570 f:\╰参祘Α\sicasm\header.hpp
+1493475796 f:\╰参祘Α\sicasm\header.hpp
 	<stack>
+	<map>
 	<fstream>
 	<string>
 	<sstream>
@@ -129,7 +130,7 @@
 1493465064 source:f:\╰参祘Α\sicasm\errmes.cpp
 	"ErrMes.Hpp"
 
-1492769016 f:\╰参祘Α\sicasm\errmes.hpp
+1493478984 f:\╰参祘Α\sicasm\errmes.hpp
 	"header.hpp"
 
 1492866807 source:c:\users\玜磕\desktop\sicasm-master\asm_table.cpp
