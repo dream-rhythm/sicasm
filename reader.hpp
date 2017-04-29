@@ -16,7 +16,7 @@ private:
     string action_old;
     string data;
     string comment;
-    int type;
+    TYPE type;
     fstream file;
     void clear_status();
     string replaceTab(string);

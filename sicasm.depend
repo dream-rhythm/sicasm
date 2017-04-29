@@ -19,7 +19,7 @@
 	<fstream>
 	<iostream>
 
-1492790208 source:f:\╰参祘Α\sicasm\main.cpp
+1493461050 source:f:\╰参祘Α\sicasm\main.cpp
 	"header.hpp"
 	"Opcode_table.hpp"
 	"reader.hpp"
@@ -28,30 +28,32 @@
 	"LocationCoumter.hpp"
 	"writer.hpp"
 	"ErrMes.hpp"
+	"AsmSetting.hpp"
 
 1492767028 f:\╰参祘Α\sicasm\opcode_table.hpp
 	"header.hpp"
 
-1492767028 f:\╰参祘Α\sicasm\reader.hpp
+1493461424 f:\╰参祘Α\sicasm\reader.hpp
 	"header.hpp"
 	"ASM_Table.hpp"
 
 1492764798 source:f:\╰参祘Α\sicasm\opcode_table.cpp
 	"Opcode_table.hpp"
 
-1492767028 f:\╰参祘Α\sicasm\asm_table.hpp
+1493461386 f:\╰参祘Α\sicasm\asm_table.hpp
+	"ERRMES.HPP"
 	"header.hpp"
 
-1492746340 source:f:\╰参祘Α\sicasm\asm_table.cpp
+1493461340 source:f:\╰参祘Α\sicasm\asm_table.cpp
 	"ASM_Table.hpp"
 
-1492763522 source:f:\╰参祘Α\sicasm\reader.cpp
+1493312392 source:f:\╰参祘Α\sicasm\reader.cpp
 	"reader.hpp"
 
-1492708608 source:f:\╰参祘Α\sicasm\locationcoumter.cpp
+1492960466 source:f:\╰参祘Α\sicasm\locationcoumter.cpp
 	"LocationCoumter.hpp"
 
-1492767028 f:\╰参祘Α\sicasm\locationcoumter.hpp
+1492960466 f:\╰参祘Α\sicasm\locationcoumter.hpp
 	"header.hpp"
 
 1492767028 source:f:\╰参祘Α\sicasm\label_table.cpp
@@ -105,14 +107,15 @@
 1492449572 source:e:\╰参祘Α\sicasm\opcode_table.cpp
 	"Opcode_table.hpp"
 
-1492744502 source:f:\╰参祘Α\sicasm\writer.cpp
+1492960468 source:f:\╰参祘Α\sicasm\writer.cpp
 	"writer.hpp"
 
 1492767028 f:\╰参祘Α\sicasm\writer.hpp
 	"ASM_Table.hpp"
 	"header.hpp"
 
-1492790592 f:\╰参祘Α\sicasm\header.hpp
+1493461284 f:\╰参祘Α\sicasm\header.hpp
+	<stack>
 	<fstream>
 	<string>
 	<sstream>
@@ -123,7 +126,7 @@
 	<cctype>
 	<cstdlib>
 
-1492790356 source:f:\╰参祘Α\sicasm\errmes.cpp
+1492960466 source:f:\╰参祘Α\sicasm\errmes.cpp
 	"ErrMes.Hpp"
 
 1492769016 f:\╰参祘Α\sicasm\errmes.hpp
@@ -265,4 +268,14 @@
 
 1492872521 c:\users\玜磕\desktop\sicasm\asmsetting.hpp
 	"header.hpp"
+
+1492960466 f:\╰参祘Α\sicasm\asmsetting.hpp
+	"header.hpp"
+
+1493140086 source:f:\╰参祘Α\sicasm\literalpool.cpp
+	"LiteralPool.hpp"
+
+1493139232 f:\╰参祘Α\sicasm\literalpool.hpp
+	"header.hpp"
+	"ASM_Table.hpp"
 

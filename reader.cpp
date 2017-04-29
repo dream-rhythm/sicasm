@@ -1,7 +1,7 @@
 #include"reader.hpp"
 
 void Reader::clear_status(){
-    type=-1;
+    type=COMMENT;
     cmd.clear();
     label.clear();
     action.clear();
@@ -101,16 +101,14 @@ bool Reader::nextLine(){
                 }
             }
         }
-        this->comment = this->removeHeaderSpace(this->comment);         //把註解去除開頭的空白
-        if(this->action=="START")this->type=0;                          //設定type
-        else if(this->action=="END")type = 1;                           //設定type
-        else if(this->action=="RESW"||this->action=="RESB")this->type=2;//設定type
-        else if(this->action=="WORD"||this->action=="BYTE")this->type=3;//設定type
-        else if(this->action=="ORG")this->type=6;
-        else if(this->action=="")this->type=5;                          //設定type
-        else this->type = 4;                                            //設定type
-
-
+        this->comment = this->removeHeaderSpace(this->comment);             //把註解去除開頭的空白
+        if(this->action=="START")this->type=START;                          //設定type
+        else if(this->action=="END")type = END;                             //設定type
+        else if(this->action=="RESW"||this->action=="RESB")this->type=RES;  //設定type
+        else if(this->action=="WORD"||this->action=="BYTE")this->type=CONST;//設定type
+        else if(this->action=="ORG")this->type=ORG;                         //設定type
+        else if(this->action=="")this->type=COMMENT;                        //設定type
+        else this->type = OPERATOR;                                         //設定type
         return true;                                                 //回傳true代表成功讀取資料
     }
     else return false;                                               //回傳false代表讀取資料失敗
