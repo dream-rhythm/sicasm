@@ -34,6 +34,7 @@
 		</Compiler>
 		<Unit filename="ASM_Table.cpp" />
 		<Unit filename="ASM_Table.hpp" />
+		<Unit filename="AsmSetting.hpp" />
 		<Unit filename="ERRMES.CPP" />
 		<Unit filename="ERRMES.HPP" />
 		<Unit filename="Label_table.cpp" />

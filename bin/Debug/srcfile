@@ -1,23 +1,35 @@
-HW1SIC   start   2000
-go       lda     #2
-         add     #7
+HW1SIC   start   2000		123
+.this is a test
+ .this is a test
+test     resw    100
+         org     test+10
+first    word    1
+second   word    2
+         org
+go       lda     AA,x
+         add     BB
          sta     CC
-         sub     #3
+         sub     CC
          sta     EE
-         mul     #2
+         mul     AA
          sta     FF
          lda     EE
-         div     #2
-         sta     GG
-         mul     #3
+         div     AA
+         mul     THREE
          sta     HH
          lda     GG
-         div     #6
+         div     SIX
          sta     II
+		 rsub	
+AA       word    2
+aa       word    10
+BB       word    7
 CC       resw    1
-EE       resw    1
-FF       resw    1
+EE       word    16777215
+FF       BYTE    C'123' this is comment
 GG       resw    1
 HH       resw    1
 II       resw    1
-         end     go
+THREE    word    3
+SIX      word    6
+         end	 go

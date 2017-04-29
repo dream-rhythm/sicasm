@@ -188,7 +188,7 @@ int main(int arg_num,char* arg_data[]){
     }
 
     //Pass3
-    fout = new writer(Setting.listFileName,Setting.objFileName);                            //建立新的輸出物件
+    fout = new writer(Setting.listFileName,Setting.objFileName,Setting.is_Upper);           //建立新的輸出物件
     for(int i=1;i<=AsmTAB->get_lines();i++){                                                //從第一句開始
         tmpCode = AsmTAB->findLine(i);                                                      //一句一句
         fout->outputList(tmpCode);                                                              //輸出到listFile
@@ -212,6 +212,7 @@ int main(int arg_num,char* arg_data[]){
 
 int setFileName(int arg_num,char* arg_data[],AsmSetting&Setting){
     bool is_src=false,is_obj=false,is_list=false,is_help=false,is_tab=false,is_Language=false;
+    bool is_Upper=false;
     string src,obj,list,language,tmp;
     int tab;
     for(int i=2;i<=arg_num;i++){
@@ -249,9 +250,13 @@ int setFileName(int arg_num,char* arg_data[],AsmSetting&Setting){
             tab=atoi(arg_data[i]);
             i++;
         }
+        else if(tmp=="/U"){
+            if(is_Upper)return 1;
+            is_Upper=true;
+        }
     }
     if(is_help){
-        cout<<endl<<"sicasm [/i][filename] [/o][filename] [/l][filename] [/L][eng/zh] [/t][TabLength]"<<endl<<endl;
+        cout<<endl<<"sicasm [/i][filename] [/o][filename] [/l][filename] [/L][eng/zh] [/t][TabLength] [/U]"<<endl<<endl;
         cout<<"/i  指定輸入檔檔名"<<endl;
         cout<<"/o  指定objFile檔名"<<endl;
         cout<<"/l  指定ListFile檔名"<<endl;
@@ -260,6 +265,8 @@ int setFileName(int arg_num,char* arg_data[],AsmSetting&Setting){
         cout<<"default值:使用繁體中文為預設語言"<<endl<<endl;
         cout<<"/t  指定一個tab鍵所代表的空白鍵"<<endl;
         cout<<"default值:一個tab代表4個空白鍵"<<endl;
+        cout<<"/U  指定輸出到objFile的文字為大寫"<<endl;
+        cout<<"default值:除了程式名稱外 全部英文字皆為小寫"<<endl;
         return 2;
     }
     else{
@@ -292,6 +299,8 @@ int setFileName(int arg_num,char* arg_data[],AsmSetting&Setting){
             else return 1;
         }
         else Setting.TabSpace=4;
+
+        Setting.is_Upper=is_Upper;
     }
     return 0;
 }

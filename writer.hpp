@@ -4,7 +4,7 @@
 #include"header.hpp"
 class writer{
     public:
-        writer(string,string);
+        writer(string,string,bool);
         ~writer();
         void outputList(AsmCode*);
         void outputHCard(string,unsigned int,unsigned int);
@@ -14,6 +14,7 @@ class writer{
         void stopOutputObjFILE(bool);
     private:
         void initList();
+        string toUpper(string);
         fstream ListFile;
         fstream ObjFile;
         char CardType;
@@ -21,6 +22,7 @@ class writer{
         int ByteCounter;
         string CardContentBuff;
         bool stopOBJFILE;
+        bool is_Upper;
 };
 
 #endif // Writer

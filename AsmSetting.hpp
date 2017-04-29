@@ -10,6 +10,7 @@ class AsmSetting{
         string listFileName;
         string language;
         int TabSpace;
+        bool is_Upper;
 };
 class ProgramInfo{
     public:
