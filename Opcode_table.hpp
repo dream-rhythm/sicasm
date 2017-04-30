@@ -15,7 +15,7 @@ private:
         //5= 3/4 byte
     };
 
-    static Data  code[26];
+    static Data  SICcode[26];
 
     static string upper(string);
 

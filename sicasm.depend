@@ -19,7 +19,7 @@
 	<fstream>
 	<iostream>
 
-1493484052 source:f:\╰参祘Α\sicasm\main.cpp
+1493565982 source:f:\╰参祘Α\sicasm\main.cpp
 	"header.hpp"
 	"Opcode_table.hpp"
 	"reader.hpp"
@@ -30,14 +30,14 @@
 	"ErrMes.hpp"
 	"AsmSetting.hpp"
 
-1492767028 f:\╰参祘Α\sicasm\opcode_table.hpp
+1493486840 f:\╰参祘Α\sicasm\opcode_table.hpp
 	"header.hpp"
 
 1493461424 f:\╰参祘Α\sicasm\reader.hpp
 	"header.hpp"
 	"ASM_Table.hpp"
 
-1492764798 source:f:\╰参祘Α\sicasm\opcode_table.cpp
+1493565254 source:f:\╰参祘Α\sicasm\opcode_table.cpp
 	"Opcode_table.hpp"
 
 1493461386 f:\╰参祘Α\sicasm\asm_table.hpp
@@ -107,7 +107,7 @@
 1492449572 source:e:\╰参祘Α\sicasm\opcode_table.cpp
 	"Opcode_table.hpp"
 
-1493481322 source:f:\╰参祘Α\sicasm\writer.cpp
+1493485950 source:f:\╰参祘Α\sicasm\writer.cpp
 	"writer.hpp"
 
 1493485896 f:\╰参祘Α\sicasm\writer.hpp
@@ -127,7 +127,7 @@
 	<cctype>
 	<cstdlib>
 
-1493480360 source:f:\╰参祘Α\sicasm\errmes.cpp
+1493486600 source:f:\╰参祘Α\sicasm\errmes.cpp
 	"ErrMes.Hpp"
 
 1493479792 f:\╰参祘Α\sicasm\errmes.hpp

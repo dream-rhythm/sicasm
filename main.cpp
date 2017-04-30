@@ -8,6 +8,7 @@
 #include"ErrMes.hpp"
 #include"AsmSetting.hpp"
 int setFileName(int,char*[],AsmSetting&);
+int checkUpdate();
 
 int main(int arg_num,char* arg_data[]){
     AsmSetting Setting;
@@ -23,6 +24,10 @@ int main(int arg_num,char* arg_data[]){
     writer * fout ;
     Reader * fin;
 
+    if(checkUpdate()==1){
+        system("update.exe");
+        return 1;
+    }
     int success = setFileName(arg_num,arg_data,Setting);
     if(success==1){
         cout<<"程式參數錯誤!!!\n組譯失敗..."<<endl;
@@ -41,7 +46,7 @@ int main(int arg_num,char* arg_data[]){
     for(int i=1;i<=AsmTAB->get_lines();i++){                                        //從第一行開始
         tmpCode = AsmTAB->findLine(i);                                              //找到那行
         tmpCode->set_Address(LocCtr->get_nowLoc());                                 //設定該行的Location
-        if(LocCtr->get_nowLoc()>=0x8000)tmpCode->add_ErrMes(64,Setting.language);   //如果超出0x8000 噴錯誤64(Out of addressing range)
+        if(LocCtr->get_nowLoc()>=0x8000)tmpCode->add_ErrMes(63,Setting.language);   //如果超出0x8000 噴錯誤63(Out of addressing range)
         //START
         if(tmpCode->get_type()==START){                                             //如果是START語句
             int code=LocCtr->set_Loc(tmpCode->get_data());                          //設定LocationCounter
@@ -61,7 +66,7 @@ int main(int arg_num,char* arg_data[]){
         else if(tmpCode->get_type()==ORG){                                          //如果是ORG指令
             if(tmpCode->get_data()==""){                                            //如果未指定ORG的位址
                 if(LocCtr->set_org());                                                  //跳回原本的地方
-                else tmpCode->add_ErrMes(63,Setting.language);                          //跳回失敗的話        噴錯誤63(ORG statement must be used before jump back)
+                else tmpCode->add_ErrMes(64,Setting.language);                          //跳回失敗的話        噴錯誤64(ORG statement must be used before jump back)
             }
             else{                                                                   //如果有指定ORG的位址
                 tmpStr = tmpCode->get_data();                                       //建立暫存
@@ -264,7 +269,7 @@ int setFileName(int arg_num,char* arg_data[],AsmSetting&Setting){
         cout<<"/L  指定錯誤訊息的語言[eng為英文 zh為繁體中文]"<<endl;
         cout<<"default值:使用繁體中文為預設語言"<<endl<<endl;
         cout<<"/t  指定一個tab鍵所代表的空白鍵"<<endl;
-        cout<<"default值:一個tab代表4個空白鍵"<<endl;
+        cout<<"default值:一個tab代表4個空白鍵"<<endl<<endl;
         cout<<"/U  指定輸出到objFile的文字為大寫"<<endl;
         cout<<"default值:除了程式名稱外 全部英文字皆為小寫"<<endl;
         return 2;
@@ -301,6 +306,30 @@ int setFileName(int arg_num,char* arg_data[],AsmSetting&Setting){
         else Setting.TabSpace=4;
 
         Setting.is_Upper=is_Upper;
+    }
+    return 0;
+}
+
+int checkUpdate(){
+    system("wget -q -O webVersion.txt \"https://raw.githubusercontent.com/fcu-d0441320/sicasm/master/version.txt\"");
+    fstream now,web;
+    double a,b;
+    string tmp;
+    now.open("version.txt",ios::in);
+    web.open("webVersion.txt",ios::in);
+    now>>a;
+    web>>b;
+    now.close();
+    web.close();
+    if(b>a){
+        cout<<"Now Version: "<<a<<endl;
+        cout<<"New Version: "<<b<<endl;
+        cout<<"Do you want to update?(Y/N) ";
+        cin>>tmp;
+        if(tmp=="Y"||tmp=="y"){
+            return 1;
+        }
+        else return 0;
     }
     return 0;
 }

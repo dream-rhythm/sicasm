@@ -83,8 +83,8 @@ map<int,ErrMes::MESSAGE> ErrMes::initTable(){
     tmp[26]={"Duplicate label definition","標籤重複定義"};
     tmp[36]={"Symbol must be defined before used in ORG statement","ORG語句所使用的標籤應在之前就被定義"};
     tmp[54]={"Undefined symbol in operand field","資料欄位含有未定義的標籤"};
-    tmp[63]={"ORG statement must be used before jump back","在使用ORG語句跳回原程式前,ORG語句應先被呼叫過"};
-    tmp[64]={"Out of addressing range","超出定址範圍"};
+    tmp[63]={"Out of addressing range","超出定址範圍"};
+    tmp[64]={"ORG statement must be used before jump back","在使用ORG語句跳回原程式前,ORG語句應先被呼叫過"};
     tmp[65]={"Illegal format in operand field","資料欄位格式不符合規定"};
     return tmp;
 }

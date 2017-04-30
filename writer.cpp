@@ -74,7 +74,7 @@ void writer::writeTCard(){
     }
 }
 void writer::initList(){
-    this->ListFile<<"Sic Assamber v1.1 Made By Dream Rhythm"<<endl;
+    this->ListFile<<"Sic Assamber v1.2 Made By Dream Rhythm"<<endl;
     this->ListFile<<"Line   Loc   obj     Label   OPCode  Data      comment"<<endl;
     this->ListFile<<"====   ====  ======  ======  ======  ========  =========================="<<endl;
 }

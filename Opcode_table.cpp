@@ -1,5 +1,5 @@
 #include"Opcode_table.hpp"
-Opcode::Data Opcode::code[26]={
+Opcode::Data Opcode::SICcode[26]={
         {0x18,"ADD",5},{0x40,"AND",5},
         {0x28,"CMOP",5},{0x24,"DIV",5},
         {0x3c,"J",5},{0x30,"JEQ",5},
@@ -24,14 +24,14 @@ string Opcode::upper(string txt){
 bool Opcode::is_in(string str){
     str = Opcode::upper(str);
     for(unsigned int i=0;i<26;i++){
-        if(str==Opcode::code[i].symbol)return true;
+        if(str==Opcode::SICcode[i].symbol)return true;
     }
     return false;
 }
 unsigned int Opcode::get_objcode(string str){
     str = Opcode::upper(str);
     for(unsigned int i=0;i<26;i++){
-        if(str==Opcode::code[i].symbol)return (unsigned int)Opcode::code[i].opcode*65536;
+        if(str==Opcode::SICcode[i].symbol)return (unsigned int)Opcode::SICcode[i].opcode*65536;
     }
     return 0;
 }
@@ -40,7 +40,7 @@ unsigned int Opcode::get_length(string str,string version){
     if(version=="SIC")return 3;
     else {
         for(unsigned int i=0;i<26;i++){
-            if(str==Opcode::code[i].symbol)return Opcode::code[i].xe_format;
+            if(str==Opcode::SICcode[i].symbol)return Opcode::SICcode[i].xe_format;
         }
         return -1;
     }
