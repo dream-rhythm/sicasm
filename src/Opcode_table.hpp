@@ -14,15 +14,29 @@ private:
         //1=1byte 2=2byte 3=3byte 4=4byte
         //5= 3/4 byte
     };
-
     static Data  SICcode[26];
-
     static string upper(string);
+
+    typedef struct{
+        unsigned char objcode;
+        bool xe_only;
+        unsigned int length;
+        //length only for sic/xe
+        //sic always use 3byte
+        //1=1byte 2=2byte 3=3/4byte
+    }OPCodeInformation;
+    static map<string,OPCodeInformation> OPTable;
+    static map<string,OPCodeInformation> initTable();
 
 public:
     static bool is_in(string);
     static unsigned int get_objcode(string);
     static unsigned int get_length(string,string);
 
+    /*未來將啟用的code
+    static bool is_in(string,string);
+    static unsigned int get_objcode(string,string);
+    static unsigned int get_length(string,string);
+    */
 };
 #endif

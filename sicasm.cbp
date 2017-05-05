@@ -32,25 +32,25 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="ASM_Table.cpp" />
-		<Unit filename="ASM_Table.hpp" />
-		<Unit filename="AsmSetting.hpp" />
-		<Unit filename="ERRMES.CPP" />
-		<Unit filename="ERRMES.HPP" />
-		<Unit filename="Label_table.cpp" />
-		<Unit filename="Label_table.hpp" />
-		<Unit filename="LiteralPool.cpp" />
-		<Unit filename="LiteralPool.hpp" />
-		<Unit filename="LocationCoumter.cpp" />
-		<Unit filename="LocationCoumter.hpp" />
-		<Unit filename="Opcode_table.cpp" />
-		<Unit filename="Opcode_table.hpp" />
-		<Unit filename="header.hpp" />
-		<Unit filename="main.cpp" />
-		<Unit filename="reader.cpp" />
-		<Unit filename="reader.hpp" />
-		<Unit filename="writer.cpp" />
-		<Unit filename="writer.hpp" />
+		<Unit filename="src/ASM_Table.cpp" />
+		<Unit filename="src/ASM_Table.hpp" />
+		<Unit filename="src/AsmSetting.hpp" />
+		<Unit filename="src/ERRMES.CPP" />
+		<Unit filename="src/ERRMES.HPP" />
+		<Unit filename="src/Label_table.cpp" />
+		<Unit filename="src/Label_table.hpp" />
+		<Unit filename="src/LiteralPool.cpp" />
+		<Unit filename="src/LiteralPool.hpp" />
+		<Unit filename="src/LocationCounter.cpp" />
+		<Unit filename="src/LocationCounter.hpp" />
+		<Unit filename="src/Opcode_table.cpp" />
+		<Unit filename="src/Opcode_table.hpp" />
+		<Unit filename="src/header.hpp" />
+		<Unit filename="src/main.cpp" />
+		<Unit filename="src/reader.cpp" />
+		<Unit filename="src/reader.hpp" />
+		<Unit filename="src/writer.cpp" />
+		<Unit filename="src/writer.hpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

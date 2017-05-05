@@ -3,7 +3,7 @@
 #include"reader.hpp"
 #include"ASM_Table.hpp"
 #include"Label_table.hpp"
-#include"LocationCoumter.hpp"
+#include"LocationCounter.hpp"
 #include"writer.hpp"
 #include"ErrMes.hpp"
 #include"AsmSetting.hpp"

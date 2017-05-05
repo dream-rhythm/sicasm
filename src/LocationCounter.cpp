@@ -1,4 +1,4 @@
-#include"LocationCoumter.hpp"
+#include"LocationCounter.hpp"
 
 LocationCounter::LocationCounter(){
     this->isStart = false;
