@@ -17,7 +17,6 @@ Opcode::Data Opcode::SICcode[26]={
 
 map<string,Opcode::OPCodeInformation> Opcode::OPTable=initTable();
 map<string,Opcode::OPCodeInformation> Opcode::initTable(){
-    //尚未建立完成
     //建立格式 tmp["OPCode"] = {0xOBJCode,is_xe_only,長度};
     map<string,Opcode::OPCodeInformation> tmp;
     tmp["ADD"]   ={0x18,false,3};
@@ -29,6 +28,63 @@ map<string,Opcode::OPCodeInformation> Opcode::initTable(){
     tmp["COMPF"] ={0x88, true,3};
     tmp["COMPR"] ={0xa0, true,2};
     tmp["DIV"]   ={0x24,false,3};
+    tmp["DIVF"]  ={0x64, true,3};
+    tmp["DIVR"]  ={0x9c, true,2};
+    tmp["FIX"]   ={0xc4, true,1};
+    tmp["FLOAT"] ={0xc0, true,1};
+    tmp["HIO"]   ={0xf4, true,1};
+
+    tmp["J"]     ={0x3c,false,3};
+    tmp["JEQ"]   ={0x30,false,3};
+    tmp["JGT"]   ={0x34,false,3};
+    tmp["JLT"]   ={0x38,false,3};
+    tmp["JSUB"]  ={0x48,false,3};
+    tmp["LDA"]   ={0x00,false,3};
+    tmp["LDB"]   ={0x68, true,3};
+    tmp["LDCH"]  ={0x50,false,3};
+    tmp["LDF"]   ={0x70, true,3};
+    tmp["LDL"]   ={0x08,false,3};
+    tmp["LDS"]   ={0x6c, true,3};
+    tmp["LDT"]   ={0x74, true,3};
+    tmp["LDX"]   ={0x04,false,3};
+    tmp["LPS"]   ={0xd0, true,3};
+    tmp["MUL"]   ={0x20,false,3};
+
+    tmp["MULF"]  ={0x60, true,3};
+    tmp["MULR"]  ={0x98, true,2};
+    tmp["NORM"]  ={0xc8, true,1};
+    tmp["OR"]    ={0x44,false,3};
+    tmp["RD"]    ={0xd8,false,3};
+    tmp["RMO"]   ={0xac, true,2};
+    tmp["RSUB"]  ={0x4c,false,3};
+    tmp["SHIFTL"]={0xa4, true,2};
+    tmp["SHIFTR"]={0xa8, true,2};
+    tmp["SIO"]   ={0xf0, true,1};
+
+
+    tmp["SSK"]   ={0xec, true,3};
+    tmp["STA"]   ={0x0c,false,3};
+    tmp["STB"]   ={0x78, true,3};
+    tmp["STCH"]  ={0x54,false,3};
+    tmp["STF"]   ={0x80, true,3};
+    tmp["STI"]   ={0xd4, true,3};
+    tmp["STL"]   ={0x14,false,3};
+    tmp["STS"]   ={0x7c, true,3};
+    tmp["STSW"]  ={0xe8,false,3};
+    tmp["STT"]   ={0x84, true,3};
+    tmp["STX"]   ={0x10,false,3};
+    tmp["SUB"]   ={0x1c,false,3};
+    tmp["SUBF"]  ={0x5c, true,3};
+
+    tmp["SUBR"]  ={0x94, true,2};
+    tmp["SVC"]   ={0xb0, true,2};
+    tmp["TD"]    ={0xe0,false,3};
+    tmp["TIO"]   ={0xf8, true,1};
+    tmp["TIX"]   ={0x2c,false,3};
+    tmp["TIXR"]  ={0xb8, true,2};
+    tmp["WD"]    ={0xdc,false,3};
+
+
     return tmp;
 }
 
