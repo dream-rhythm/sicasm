@@ -22,9 +22,10 @@ private:
     string replaceTab(string);
     string toUpper(string);
     string removeHeaderSpace(string);
-
+    string version;
+    int ni;
 public:
-    Reader(string,int);
+    Reader(string,int,string);
     ~Reader();
     bool nextLine();
     AsmCode* get_AsmCode();

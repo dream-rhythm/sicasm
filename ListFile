@@ -1,38 +1,23 @@
-Sic Assamber v1.1 Made By Dream Rhythm
+Sic Assamber v1.2 Made By Dream Rhythm
 Line   Loc   obj     Label   OPCode  Data      comment
 ====   ====  ======  ======  ======  ========  ==========================
-  1	   2000	       	 HW1SIC	 start 	 2000  	   123
-  2	   2000	       	       	       	       	   .this is a test
-  3	   2000	       	       	       	       	   .this is a test
-  4	   2000	       	   test	 resw  	 100   	   
-  5	   212c	       	       	 org   	 test+10	   
-  6	   200a	 000001	  first	 word  	 1     	   
-  7	   200d	 000002	 second	 word  	 2     	   
-  8	   2010	       	       	 org   	       	   
-  9	   212c	 00a159	     go	 lda   	 AA,x  	   
- 10	   212f	 18215f	       	 add   	 BB    	   
- 11	   2132	 0c2162	       	 sta   	 CC    	   
- 12	   2135	 1c2162	       	 sub   	 CC    	   
- 13	   2138	 0c2165	       	 sta   	 EE    	   
- 14	   213b	 202159	       	 mul   	 AA    	   
- 15	   213e	 0c2168	       	 sta   	 FF    	   
- 16	   2141	 002165	       	 lda   	 EE    	   
- 17	   2144	 242159	       	 div   	 AA    	   
- 18	   2147	 202174	       	 mul   	 THREE 	   
- 19	   214a	 0c216e	       	 sta   	 HH    	   
- 20	   214d	 00216b	       	 lda   	 GG    	   
- 21	   2150	 242177	       	 div   	 SIX   	   
- 22	   2153	 0c2171	       	 sta   	 II    	   
- 23	   2156	 4c0000	       	 rsub  	       	   
- 24	   2159	 000002	     AA	 word  	 2     	   
- 25	   215c	 00000a	     aa	 word  	 10    	   
- 26	   215f	 000007	     BB	 word  	 7     	   
- 27	   2162	       	     CC	 resw  	 1     	   
- 28	   2165	 ffffff	     EE	 word  	 16777215	   
- 29	   2168	 313233	     FF	 BYTE  	 C'123'	   this is comment
- 30	   216b	       	     GG	 resw  	 1     	   
- 31	   216e	       	     HH	 resw  	 1     	   
- 32	   2171	       	     II	 resw  	 1     	   
- 33	   2174	 000003	  THREE	 word  	 3     	   
- 34	   2177	 000006	    SIX	 word  	 6     	   
- 35	   217a	       	       	 end   	 go    	   
+  1	   1000	       	  hw2xe	 start 	 1000  	   
+  2	   1000	 00000b	   num1	 word  	 11    	   
+  3	   1003	 000010	   num2	 word  	 16    	   
+  4	   1006	       	  total	 resw  	 1     	   
+  5	   1009	   b430	   main	 clear 	 b     	   
+  6	   100b	 002ff2	       	 lda   	 num1  	   
+  7	   100e	 240002	       	 div   	 2     	   
+  8	   1011	 200002	       	 mul   	 2     	   
+  9	   1014	 1c2fe9	       	 sub   	 num1  	   
+ 10	   1017	 280fff	       	 comp  	 4095  	   #16777215=#-1
+ 11	   101a	 002fe3	       	 lda   	 num1  	   
+ 12	   101d	 302003	       	 jeq   	 loop  	   
+ 13	   1020	 180002	       	 add   	 2     	   
+ 14	   1023	   9003	   loop	 addr  	 a,b   	   
+ 15	   1025	 180002	       	 add   	 2     	   
+ 16	   1028	 282fd8	       	 comp  	 num2  	   
+ 17	   102b	 342003	       	 jgt   	 break 	   
+ 18	   102e	 3c2ff2	       	 j     	 loop  	   
+ 19	   1031	 782fd2	  break	 stb   	 total 	   
+ 20	   1034	       	       	 end   	 main  	   

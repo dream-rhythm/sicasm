@@ -55,7 +55,7 @@ void writer::outputTCard(unsigned int address,string data){
         this->writeTCard();
         this->startLoc = address;
     }
-    this->CardContentBuff = this->CardContentBuff + data;
+    this->CardContentBuff = this->CardContentBuff + data.substr(0,data.length()/2*2);
     this->ByteCounter += data.length()/2;
 }
 void writer::writeTCard(){

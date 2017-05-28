@@ -280,17 +280,17 @@
 	"header.hpp"
 	"ASM_Table.hpp"
 
-1493461340 source:f:\╰参祘Α\sicasm\src\asm_table.cpp
+1495564708 source:f:\╰参祘Α\sicasm\src\asm_table.cpp
 	"ASM_Table.hpp"
 
-1493461386 f:\╰参祘Α\sicasm\src\asm_table.hpp
+1495560912 f:\╰参祘Α\sicasm\src\asm_table.hpp
 	"ERRMES.HPP"
 	"header.hpp"
 
 1493479792 f:\╰参祘Α\sicasm\src\errmes.hpp
 	"header.hpp"
 
-1493475796 f:\╰参祘Α\sicasm\src\header.hpp
+1495558104 f:\╰参祘Α\sicasm\src\header.hpp
 	<stack>
 	<map>
 	<fstream>
@@ -303,7 +303,7 @@
 	<cctype>
 	<cstdlib>
 
-1493486600 source:f:\╰参祘Α\sicasm\src\errmes.cpp
+1494309812 source:f:\╰参祘Α\sicasm\src\errmes.cpp
 	"ErrMes.Hpp"
 
 1492767028 source:f:\╰参祘Α\sicasm\src\label_table.cpp
@@ -320,27 +320,27 @@
 	"header.hpp"
 	"ASM_Table.hpp"
 
-1493461542 source:f:\╰参祘Α\sicasm\src\reader.cpp
+1495989654 source:f:\╰参祘Α\sicasm\src\reader.cpp
 	"reader.hpp"
 
-1493461424 f:\╰参祘Α\sicasm\src\reader.hpp
+1495553840 f:\╰参祘Α\sicasm\src\reader.hpp
 	"header.hpp"
 	"ASM_Table.hpp"
 
-1493566682 source:f:\╰参祘Α\sicasm\src\writer.cpp
+1495564796 source:f:\╰参祘Α\sicasm\src\writer.cpp
 	"writer.hpp"
 
 1493485896 f:\╰参祘Α\sicasm\src\writer.hpp
 	"ASM_Table.hpp"
 	"header.hpp"
 
-1493945654 source:f:\╰参祘Α\sicasm\src\locationcounter.cpp
+1495558016 source:f:\╰参祘Α\sicasm\src\locationcounter.cpp
 	"LocationCounter.hpp"
 
-1492960466 f:\╰参祘Α\sicasm\src\locationcounter.hpp
+1495557940 f:\╰参祘Α\sicasm\src\locationcounter.hpp
 	"header.hpp"
 
-1493945662 source:f:\╰参祘Α\sicasm\src\main.cpp
+1495989350 source:f:\╰参祘Α\sicasm\src\main.cpp
 	"header.hpp"
 	"Opcode_table.hpp"
 	"reader.hpp"
@@ -351,9 +351,12 @@
 	"ErrMes.hpp"
 	"AsmSetting.hpp"
 
-1493949500 f:\╰参祘Α\sicasm\src\opcode_table.hpp
+1495562322 f:\╰参祘Α\sicasm\src\opcode_table.hpp
 	"header.hpp"
 
-1493483992 f:\╰参祘Α\sicasm\src\asmsetting.hpp
+1495552072 f:\╰参祘Α\sicasm\src\asmsetting.hpp
 	"header.hpp"
+
+1495563880 source:f:\╰参祘Α\sicasm\src\opcode_table.cpp
+	"Opcode_table.hpp"
 

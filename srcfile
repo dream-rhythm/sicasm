@@ -1,35 +1,20 @@
-HW1SIC   start   2000		123
-.this is a test
- .this is a test
-test     resw    100
-         org     test+10
-first    word    1
-second   word    2
-         org
-go       lda     AA,x
-         add     BB
-         sta     CC
-         sub     CC
-         sta     EE
-         mul     AA
-         sta     FF
-         lda     EE
-         div     AA
-         mul     THREE
-         sta     HH
-         lda     GG
-         div     SIX
-         sta     II
-		 rsub	
-AA       word    2
-aa       word    10
-BB       word    7
-CC       resw    1
-EE       word    16777215
-FF       BYTE    C'123' this is comment
-GG       resw    1
-HH       resw    1
-II       resw    1
-THREE    word    3
-SIX      word    6
-         end	 go
+hw2xe    start   1000
+num1     word    11
+num2     word    16
+total    resw    1
+main     clear   b
+         lda     num1
+         div     #2
+         mul     #2
+         sub     num1
+         comp    #4095	       #16777215=#-1
+         lda     num1
+         jeq     loop
+         add     #2
+loop     addr    a,b
+         add     #2
+         comp    num2
+         jgt     break
+         j       loop
+break    stb     total
+         end     main

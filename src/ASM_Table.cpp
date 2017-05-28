@@ -1,5 +1,5 @@
 #include"ASM_Table.hpp"
-AsmCode::AsmCode(TYPE type,string label,string opcode,string data,string commit,int line,string opcode_old){
+AsmCode::AsmCode(TYPE type,string label,string opcode,string data,string commit,int line,string opcode_old,int ni){
     this->type=type;
     this->lable=label;
     this->opcode=opcode;
@@ -10,9 +10,54 @@ AsmCode::AsmCode(TYPE type,string label,string opcode,string data,string commit,
     this->head=nullptr;
     this->next=nullptr;
     this->address = 0;
+    this->ni=ni;
+    for(int i=0;i<4;i++)this->xbpe[i]=false;
 };
 AsmCode::~AsmCode(){
     if(this->head!=nullptr)delete this->head;
+}
+void AsmCode::set_ni(int ni){
+    this->ni=ni;
+}
+void AsmCode::set_opcode_4byte(){
+    this->opcode=this->opcode.substr(1);
+    this->set_xbpe("e");
+}
+bool AsmCode::is_e(){
+    return this->xbpe[3];
+}
+void AsmCode::set_xbpe(string xbpe){
+    for(unsigned i=0;i<xbpe.length();i++){
+        switch(xbpe.at(i)){
+            case 'x':
+            case 'X':
+                this->xbpe[0]=true;
+                break;
+            case 'b':
+            case 'B':
+                this->xbpe[1]=true;
+                break;
+            case 'p':
+            case 'P':
+                this->xbpe[2]=true;
+                break;
+            case 'e':
+            case 'E':
+                this->xbpe[3]=true;
+                break;
+        }
+    }
+}
+unsigned AsmCode::get_objcode_nixbpe(){
+    unsigned int tmp=0;
+    tmp+=this->ni*0x00010000;
+    if(this->xbpe[0]==true)tmp+=0x00008000;
+    if(this->xbpe[1]==true)tmp+=0x00004000;
+    if(this->xbpe[2]==true)tmp+=0x00002000;
+    if(this->xbpe[3]==true)tmp+=0x00001000;
+    //cout<<"Line="<<this->line<<" xbpe="<<hex<<tmp<<dec<<endl;
+    if(this->xbpe[3]==true)return tmp*0x100;
+    else  return tmp;
 }
 void AsmCode::add_ErrMes(int errorCode,string language){
     string str = ErrMes::get_ErrorMessage(errorCode,language);
@@ -31,10 +76,17 @@ void AsmCode::set_Address(unsigned int address){
 void AsmCode::set_objcode(string obj){
     this->objcode = obj;
 }
+void AsmCode::set_objcode(unsigned int  obj,unsigned int length){
+    stringstream ss;
+    if(this->type==4){
+        ss<<std::setfill('0')<<std::hex<<std::setw(2*length)<<obj<<std::setw(0)<<std::setfill(' ');
+    }
+    //else if(this->opcode=="WORD")ss<<std::setfill('0')<<std::hex<<std::setw(6)<<obj<<std::setw(0)<<std::setfill(' ');
+    ss>>this->objcode;
+}
 void AsmCode::set_objcode(unsigned int  obj){
     stringstream ss;
-    if(this->type==4)ss<<std::setfill('0')<<std::hex<<std::setw(6)<<obj<<std::setw(0)<<std::setfill(' ');
-    else if(this->opcode=="WORD")ss<<std::setfill('0')<<std::hex<<std::setw(6)<<obj<<std::setw(0)<<std::setfill(' ');
+    if(this->opcode=="WORD")ss<<std::setfill('0')<<std::hex<<std::setw(6)<<obj<<std::setw(0)<<std::setfill(' ');
     ss>>this->objcode;
 }
 unsigned int AsmCode::get_Address(){

@@ -96,7 +96,7 @@ string Opcode::upper(string txt){
     }
     return txt;
 }
-
+/*
 bool Opcode::is_in(string str){
     str = Opcode::upper(str);
     for(unsigned int i=0;i<26;i++){
@@ -120,8 +120,8 @@ unsigned int Opcode::get_length(string str,string version){
         }
         return -1;
     }
-}
-/*未來將啟用的code
+}*/
+
 bool Opcode::is_in(string str,string version){
     map<string,Opcode::OPCodeInformation>::iterator it;
     it = OPTable.find(str);
@@ -161,12 +161,13 @@ unsigned int Opcode::get_objcode(string str,string version){
         else it = OPTable.find(str);
         if(it!=OPTable.end()){
             ans = it->second.objcode;
-            if(atr.at(0)!='+')ans = ans*0x010000;
-            else ans = ans = ans*0x01000000 + 0x00100000;
+            if(str.at(0)!='+')ans = ans*0x010000;
+            else ans = ans*0x01000000;
             return ans;
         }
         else return 1;
     }
+    return 1;
 }
 unsigned int Opcode::get_length(string str,string version){
     map<string,Opcode::OPCodeInformation>::iterator it;
@@ -193,4 +194,14 @@ unsigned int Opcode::get_length(string str,string version){
         else return 0;
     }
 }
-*/
+bool Opcode::is_2Byte_r1r2(string opcode){
+    string r1r2[8]={"ADDR","COMPR","DIVR","MULR","RMO","SHIFTL","SHIFTR","SUBR"};
+    for(int i=0;i<8;i++)if(opcode==r1r2[i])return true;
+    return false;
+}
+unsigned Opcode::find_register(string register_name){
+    string NAME[10]={"A","X","L","B","S","T","F","","PC","SW"};
+    string name[10]={"a","x","l","b","s","t","f","","pc","sw"};
+    for(int i=0;i<10;i++)if(register_name==name[i]||register_name==NAME[i])return i;
+    return 0;
+}

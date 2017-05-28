@@ -9,14 +9,26 @@
 #include"AsmSetting.hpp"
 int setFileName(int,char*[],AsmSetting&);
 int checkUpdate();
-
+unsigned int htoi(string num){
+    unsigned int ans=0;
+    for(unsigned i=0;i<num.length();i++){
+        if(isdigit(num.at(i)))ans=ans*16+num.at(i)-'0';
+        else if(isupper(num.at(i)))ans=ans*16+num.at(i)-'A';
+        else ans=ans*16+num.at(i)-'a';
+    }
+    return ans;
+}
 int main(int arg_num,char* arg_data[]){
+
     AsmSetting Setting;
+    //Setting.version="SICXE";
     ProgramInfo Info;
     stringstream ss;
     string tmpStr;
     unsigned int tmpData;
+    int tmpNum;
     bool is_end_statament=false;
+    unsigned int base;
     LocationCounter*LocCtr= new LocationCounter();
     Label_table*SymbolTAB = new Label_table();
     AsmTable* AsmTAB;
@@ -25,7 +37,7 @@ int main(int arg_num,char* arg_data[]){
     Reader * fin;
 
     if(checkUpdate()==1){
-        system("update.exe");
+        system("tools\downloader.exe");
         return 1;
     }
     int success = setFileName(arg_num,arg_data,Setting);
@@ -37,7 +49,7 @@ int main(int arg_num,char* arg_data[]){
 
     //Pass0
     AsmTAB = new AsmTable();                                                        //new 一個中繼暫存表
-    fin = new Reader(Setting.srcFileName,Setting.TabSpace);                         //new 一個讀取器
+    fin = new Reader(Setting.srcFileName,Setting.TabSpace,Setting.version);         //new 一個讀取器
     while(fin->nextLine()){                                                         //當成功讀取下一句時
         AsmTAB->append(fin->get_AsmCode());                                         //把這句話加入中繼暫存表
     }
@@ -63,6 +75,7 @@ int main(int arg_num,char* arg_data[]){
         //Comment
         else if(tmpCode->get_type()==COMMENT);                                      //如果是註解  啥都不做
         else if(tmpCode->get_type()==END)Info.end=LocCtr->get_nowLoc();             //設定程式結尾
+        else if(tmpCode->get_type()==BASE);
         else if(tmpCode->get_type()==ORG){                                          //如果是ORG指令
             if(tmpCode->get_data()==""){                                            //如果未指定ORG的位址
                 if(LocCtr->set_org());                                                  //跳回原本的地方
@@ -102,11 +115,11 @@ int main(int arg_num,char* arg_data[]){
                     tmpCode->add_ErrMes(26,Setting.language);                       //噴錯誤26(Duplicate label definition)
                     SymbolTAB->setErrflag(tmpCode->get_label());                    //並把這個label設成錯誤標籤
                 }
-                else if(Opcode::is_in(tmpStr))tmpCode->add_ErrMes(1,Setting.language);//如果這個label是operator 噴錯誤1(Illegal format in label field)
+                else if(Opcode::is_in(tmpStr,Setting.version))tmpCode->add_ErrMes(1,Setting.language);//如果這個label是operator 噴錯誤1(Illegal format in label field)
                 else SymbolTAB->append(tmpStr,LocCtr->get_nowLoc());                 //否則 加入symbol存起來
             }
             tmpStr=tmpCode->get_opcode();                                           //獲取指令
-            if(Opcode::is_in(tmpStr))LocCtr->add(Opcode::get_length(tmpStr,"SIC")); //如果他是opcode 把LocationCounter加上對應的空間
+            if(Opcode::is_in(tmpStr,Setting.version))LocCtr->add(Opcode::get_length(tmpStr,Setting.version)); //如果他是opcode 把LocationCounter加上對應的空間
             else if(tmpCode->get_type()==RES||tmpCode->get_type()==CONST)LocCtr->add(tmpStr,tmpCode->get_data());//WORD BYTE RESW RESB
             else tmpCode->add_ErrMes(2,Setting.language);                           //如果都不是   噴錯誤2(Illegal format in operation field)
         }
@@ -116,8 +129,14 @@ int main(int arg_num,char* arg_data[]){
     //Pass2
     for(int i=1;i<=AsmTAB->get_lines();i++){                                       //從第一行開始
         tmpCode = AsmTAB->findLine(i);                                             //指定該行
+        if(i!=AsmTAB->get_lines())LocCtr->set_Loc( AsmTAB->findLine(i+1)->get_Address() );
         if(is_end_statament&&tmpCode->get_type()!=COMMENT)tmpCode->add_ErrMes(6,Setting.language);//如果讀到END語句 後面還有非註解的東西 噴錯誤6(Undefined label after END statement)
         if(tmpCode->get_type()==START);                                            //如果是START語句   啥都不做
+        else if(tmpCode->get_type()==BASE){
+            if(SymbolTAB->is_in(tmpCode->get_data()))base =SymbolTAB->get_address(tmpCode->get_data());
+            else tmpCode->add_ErrMes(54,Setting.language);
+
+        }
         else if(tmpCode->get_type()==END){                                         //如果是END語句
             if(tmpCode->get_data()=="")Info.main=Info.start;                            //如果沒設定起始點  設起始點為程式第一行
             else if(SymbolTAB->is_in(tmpCode->get_data()))Info.main=SymbolTAB->get_address(tmpCode->get_data());//找的到label 設該label為程式起點                             //如果找的到指定的位址 也是啥都不做
@@ -164,10 +183,32 @@ int main(int arg_num,char* arg_data[]){
             }
         }
         else if(tmpCode->get_type()==OPERATOR){                                     //如果是OPcode
-            if(Opcode::is_in(tmpCode->get_opcode())){                                   //且在optable找的到
-                tmpData = Opcode::get_objcode(tmpCode->get_opcode());                       //設定他的數值
+            if(tmpCode->get_opcode().at(0)=='+'&&Setting.version!="SIC"){
+                tmpCode->set_opcode_4byte();
+            }
+            if(Opcode::is_in(tmpCode->get_opcode(),Setting.version)){                    //且在optable找的到
+                tmpData = Opcode::get_objcode(tmpCode->get_opcode(),Setting.version);       //設定他的數值
                 if(tmpCode->get_opcode()=="RSUB"){                                          //如果是rsub
                     if(tmpCode->get_data()!="")tmpCode->add_ErrMes(23,Setting.language);        //而且data有資料 噴錯誤23(Operand should not follow RSUB statement)
+                }
+                else if(Opcode::get_length(tmpCode->get_opcode(),"SICXE")==1){
+                    tmpData/=0x00010000;
+                }
+                else if(Opcode::get_length(tmpCode->get_opcode(),"SICXE")==2){
+                    if(Opcode::is_2Byte_r1r2(tmpCode->get_opcode())==true){
+                        tmpData/=0x00000100;
+                        tmpStr=tmpCode->get_data().substr(0,tmpCode->get_data().find(","));
+                        tmpData+=Opcode::find_register(tmpStr)*0x10;
+                        tmpStr=tmpCode->get_data().substr(tmpCode->get_data().find(",")+1);
+                        tmpData+=Opcode::find_register(tmpStr);
+                        /*cout<<tmpCode->get_data().substr(tmpCode->get_data().find(",")+1)<<endl;
+                        cout<<Opcode::find_register(tmpStr)<<endl;*/
+                    }
+                    else{
+                        tmpData/=0x00000100;
+                        tmpData+=Opcode::find_register(tmpCode->get_data())*0x10;
+                        //cout<<hex<<tmpData<<dec<<tmpCode->get_data()<<endl;
+                    }
                 }
                 else{                                                                       //其他部分
                     tmpStr = tmpCode->get_data();                                               //獲取資料
@@ -175,15 +216,37 @@ int main(int arg_num,char* arg_data[]){
                         if((tmpStr.at(tmpStr.length()-1)=='X'||tmpStr.at(tmpStr.length()-1)=='x')   //而且末兩碼是",x"
                            &&tmpStr.at(tmpStr.length()-2)==','){
                                 tmpStr = tmpStr.substr(0,tmpStr.length()-2);                        //切出label
-                                tmpData+=0x8000;                                                    //objcode+0x8000
+                                tmpCode->set_xbpe("x");                                             //objcode+0x8000
                            }
                     }
                     if(SymbolTAB->is_in(tmpStr)){                                               //如果找的到label
-                        tmpData+=SymbolTAB->get_address(tmpStr);                                //加上去
+                        if(Setting.version=="SIC")tmpData+=SymbolTAB->get_address(tmpStr);      //加上去
+                        else{
+                            tmpNum=(int)SymbolTAB->get_address(tmpStr)-(int)LocCtr->get_nowLoc();
+                            if(tmpCode->is_e())tmpCode+=SymbolTAB->get_address(tmpStr);
+                            else if(tmpNum>=-2048 &&tmpNum<=2047){
+                                        tmpCode->set_xbpe("p");
+                                        if(tmpNum<0)tmpNum+=4096;
+                                        tmpData+=tmpNum;
+                                    }
+                            else if((int)SymbolTAB->get_address(tmpStr)-base>=0 &&
+                                    (int)SymbolTAB->get_address(tmpStr)-base<=4095){
+                                        tmpCode->set_xbpe("b");
+                                        tmpData+=SymbolTAB->get_address(tmpStr)-base;
+                                    }
+                            else tmpCode->add_ErrMes(64,Setting.language);
+                        }
+                    }
+                    else if(isdigit(tmpStr.at(0))){
+                        tmpData+=atoi(tmpStr.c_str());
                     }
                     else tmpCode->add_ErrMes(54,Setting.language);                              //找不到就噴錯誤54(Undefined symbol in operand field)
                 }
-                tmpCode->set_objcode(tmpData);                                              //把算出來的objcode存起來
+                if(Setting.version!="SIC"){
+                    if(Opcode::get_length(tmpCode->get_opcode(),"SICXE")>=3)tmpCode->set_objcode(tmpData+tmpCode->get_objcode_nixbpe(),Opcode::get_length(tmpCode->get_opcode(),"SICXE")); //把算出來的objcode存起來
+                    else tmpCode->set_objcode(tmpData,Opcode::get_length(tmpCode->get_opcode(),"SICXE"));
+                }
+                else tmpCode->set_objcode(tmpData+tmpCode->get_objcode_nixbpe(),(unsigned)3);
             }
             else{
                 tmpCode->add_ErrMes(2,Setting.language);                                    //如果找不到operator 噴錯誤2(Illegal format in operation field)
@@ -217,7 +280,7 @@ int main(int arg_num,char* arg_data[]){
 
 int setFileName(int arg_num,char* arg_data[],AsmSetting&Setting){
     bool is_src=false,is_obj=false,is_list=false,is_help=false,is_tab=false,is_Language=false;
-    bool is_Upper=false;
+    bool is_Upper=false,is_XE=false;;
     string src,obj,list,language,tmp;
     int tab;
     for(int i=2;i<=arg_num;i++){
@@ -259,9 +322,12 @@ int setFileName(int arg_num,char* arg_data[],AsmSetting&Setting){
             if(is_Upper)return 1;
             is_Upper=true;
         }
+        else if(tmp=="/XE"){
+            is_XE=true;
+        }
     }
     if(is_help){
-        cout<<endl<<"sicasm [/i][filename] [/o][filename] [/l][filename] [/L][eng/zh] [/t][TabLength] [/U]"<<endl<<endl;
+        cout<<endl<<"sicasm [/i][filename] [/o][filename] [/l][filename] [/L][eng/zh] [/t][TabLength] [/U] [/XE]"<<endl<<endl;
         cout<<"/i  指定輸入檔檔名"<<endl;
         cout<<"/o  指定objFile檔名"<<endl;
         cout<<"/l  指定ListFile檔名"<<endl;
@@ -271,7 +337,9 @@ int setFileName(int arg_num,char* arg_data[],AsmSetting&Setting){
         cout<<"/t  指定一個tab鍵所代表的空白鍵"<<endl;
         cout<<"default值:一個tab代表4個空白鍵"<<endl<<endl;
         cout<<"/U  指定輸出到objFile的文字為大寫"<<endl;
-        cout<<"default值:除了程式名稱外 全部英文字皆為小寫"<<endl;
+        cout<<"default值:除了程式名稱外 全部英文字皆為小寫"<<endl<<endl;
+        cout<<"/XE  指定使用XE版組譯器"<<endl;
+        cout<<"default值:使用SIC版組譯器"<<endl;
         return 2;
     }
     else{
@@ -305,24 +373,25 @@ int setFileName(int arg_num,char* arg_data[],AsmSetting&Setting){
         }
         else Setting.TabSpace=4;
 
+        if(is_XE)Setting.version="SICXE";
+        else Setting.version="SIC";
+
         Setting.is_Upper=is_Upper;
     }
     return 0;
 }
 
 int checkUpdate(){
-    system("wget -q -O webVersion.txt \"https://raw.githubusercontent.com/fcu-d0441320/sicasm/master/version.txt\"");
-    fstream now,web;
-    double a,b;
+    system("tools\\wget -q -O webVersion.txt \"https://raw.githubusercontent.com/fcu-d0441320/sicasm/master/version.txt\"");
+    fstream web;
+    double thisProgramVersion = 2.0;
+    double b;
     string tmp;
-    now.open("version.txt",ios::in);
     web.open("webVersion.txt",ios::in);
-    now>>a;
     web>>b;
-    now.close();
     web.close();
-    if(b>a){
-        cout<<"Now Version: "<<a<<endl;
+    if(b>thisProgramVersion){
+        cout<<"Now Version: "<<thisProgramVersion<<endl;
         cout<<"New Version: "<<b<<endl;
         cout<<"Do you want to update?(Y/N) ";
         cin>>tmp;

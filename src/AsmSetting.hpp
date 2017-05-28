@@ -11,6 +11,7 @@ class AsmSetting{
         string language;
         int TabSpace;
         bool is_Upper;
+        string version;
 };
 class ProgramInfo{
     public:

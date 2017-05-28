@@ -39,7 +39,10 @@ int  LocationCounter::set_Loc(string address){
     }
     else return -1;
 }
-
+int LocationCounter::set_Loc(unsigned int address){
+    this->location=address;
+    return 0;
+}
 unsigned int  LocationCounter::get_nowLoc(){
     return this->location;
 }

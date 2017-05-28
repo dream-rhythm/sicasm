@@ -14,6 +14,7 @@ class LocationCounter{
         void add(string,string);
         bool is_Start();
         int set_Loc(string);
+        int set_Loc(unsigned int);
         unsigned int get_nowLoc();
         LocationCounter();
 };

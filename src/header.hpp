@@ -21,6 +21,9 @@ typedef enum{
     CONST=3,
     OPERATOR=4,
     COMMENT=5,
-    ORG=6
+    ORG=6,
+    BASE=7
 }TYPE;
+
+
 #endif // HEADER

@@ -16,14 +16,20 @@ public:
             ErrMessage(string);
             ~ErrMessage();
     };
-    AsmCode(TYPE,string,string,string,string,int,string);
+    AsmCode(TYPE,string,string,string,string,int,string,int);
     //AsmCode(int,string,string,string,string,int);
     void set_Address(unsigned int);
     void add_ErrMes(int,string);
     void add_ErrMes(string);
+    void set_opcode_4byte();
     void set_next(AsmCode*);
     void set_objcode(string);
     void set_objcode(unsigned int);
+    void set_objcode(unsigned int,unsigned int);
+    void set_ni(int);
+    void set_xbpe(string);
+    unsigned get_objcode_nixbpe();
+    bool is_e();
     TYPE get_type();
     unsigned int get_Address();
     string get_label();
@@ -37,6 +43,8 @@ public:
     void printData();
 private:
     TYPE type;              //類型
+    bool xbpe[4];           //xbpe(xe only)
+    int  ni;
     string lable;           //標籤
     string opcode;          //指令-upper
     string opcode_old;      //指令-原始

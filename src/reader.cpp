@@ -8,12 +8,15 @@ void Reader::clear_status(){
     action_old.clear();
     data.clear();
     comment.clear();
+    if(this->version=="SIC")ni=0;
+    else ni=3;
 };
 
-Reader::Reader(string FileName,int TabSpace){
+Reader::Reader(string FileName,int TabSpace,string version){
     this->file.open(FileName,std::ios::in);
     this->lines=0;
     this->TabSpace = TabSpace;
+    this->version = version;
 }
 Reader::~Reader(){
     this->file.close();
@@ -101,6 +104,20 @@ bool Reader::nextLine(){
                 }
             }
         }
+        if(this->data!=""&&this->version!="SIC"){
+            if(this->data.at(0)=='@'){
+                this->data=this->data.substr(1);
+                this->ni=2;
+            }
+            else if(this->data.at(0)=='#'){
+                this->data=this->data.substr(1);
+                this->ni=1;
+            }
+            ni=0;
+        }
+        else ni=3;
+        //cout<<"Line="<<this->lines<<" ni="<<ni<<endl;
+
         this->comment = this->removeHeaderSpace(this->comment);             //把註解去除開頭的空白
         if(this->action=="START")this->type=START;                          //設定type
         else if(this->action=="END")type = END;                             //設定type
@@ -108,6 +125,7 @@ bool Reader::nextLine(){
         else if(this->action=="WORD"||this->action=="BYTE")this->type=CONST;//設定type
         else if(this->action=="ORG")this->type=ORG;                         //設定type
         else if(this->action=="")this->type=COMMENT;                        //設定type
+        else if(this->action=="BASE")this->type=BASE;
         else this->type = OPERATOR;                                         //設定type
         return true;                                                 //回傳true代表成功讀取資料
     }
@@ -115,5 +133,5 @@ bool Reader::nextLine(){
 }
 
 AsmCode* Reader::get_AsmCode(){
-    return new AsmCode(this->type,this->label,this->action,this->data,this->comment,this->lines,this->action_old);
+    return new AsmCode(this->type,this->label,this->action,this->data,this->comment,this->lines,this->action_old,this->ni);
 }

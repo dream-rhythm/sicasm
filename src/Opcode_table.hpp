@@ -29,14 +29,16 @@ private:
     static map<string,OPCodeInformation> initTable();
 
 public:
+    /*
     static bool is_in(string);
     static unsigned int get_objcode(string);
     static unsigned int get_length(string,string);
+    */
 
-    /*未來將啟用的code
     static bool is_in(string,string);
     static unsigned int get_objcode(string,string);
     static unsigned int get_length(string,string);
-    */
+    static bool is_2Byte_r1r2(string);
+    static unsigned int find_register(string);
 };
 #endif
